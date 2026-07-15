@@ -1,0 +1,4 @@
+.DS_Store
+# Stora videofiler versionshanteras inte (källmaterialet bör redan finnas säkrat separat).
+# Koden, bilderna och konfigurationen nedan är det som faktiskt behöver historik/backup.
+bilder/*.mp4

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; form-action 'self'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta name="theme-color" content="#1b2740" />
+<title>Vår kundresa — Visorium Studio</title>
+<meta name="description" content="En tydlig process från ja till resultat: idé, brief, planering, produktion, redigering och leverans. Så arbetar Visorium Studio med foto och film." />
+<link rel="stylesheet" href="fonts.css" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="aura.css?v=5" />
+<link rel="stylesheet" href="experience.css?v=3" />
+<style>
+  /* Stäng gapet högst upp: landa direkt på rubriken, inget onödigt mellanrum */
+  .kr-hero{padding:118px 0 40px}
+  .kr-hero h1{font-size:clamp(2.1rem,5vw,3.2rem);margin:.3em 0 .35em}
+  .kr-hero .lead{max-width:640px}
+  .kr-steps{list-style:none;padding:0;margin:36px 0 0;display:grid;gap:18px}
+  .kr-step{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;padding:26px 26px;}
+  .kr-badge{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;flex:0 0 auto;
+    font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.2rem;color:#06101f;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 22px -8px var(--accent)}
+  .kr-step h3{font-size:1.24rem;margin:2px 0 8px}
+  .kr-step p{color:var(--muted);margin:0 0 10px}
+  .kr-step .ticks{margin:0}
+  .kr-cta{margin:60px 0 0;text-align:center}
+  .kr-cta h2{font-size:clamp(1.6rem,3.5vw,2.3rem);margin:0 0 14px}
+  .kr-cta .btn{margin:6px}
+  @media(max-width:620px){.kr-step{grid-template-columns:1fr}.kr-badge{margin-bottom:4px}}
+</style>
+</head>
+<body>
+
+<!-- Glasig header med tydlig, färgad väg tillbaka till startsidan (aldrig strandad) -->
+<header class="site-header scrolled" id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="Visorium Studio – till startsidan">
+      <svg class="brand-mark" viewBox="0 0 80 64" aria-hidden="true">
+        <polygon points="0,0 34,64 42,48 14,0" fill="var(--accent)"></polygon>
+        <polygon points="80,0 46,64 38,48 66,0" fill="var(--accent)"></polygon>
+      </svg>
+      <span class="brand-word">isorium<span class="brand-sub">STUDIO</span></span>
+    </a>
+    <a href="index.html" class="btn btn-accent">← Till startsidan</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO – direkt på rubriken, inget stort gap ovanför -->
+  <section class="hero kr-hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow reveal"><span class="dot"></span> Vår kundresa</p>
+      <h1 class="reveal">En tydlig process <span class="hl">från ja till resultat</span>.</h1>
+      <p class="lead reveal">Från första idé till färdig leverans vet du alltid var vi är i processen. Sex enkla steg – vi håller i planering, produktion och kvalitet så att du kan fokusera på ditt.</p>
+    </div>
+  </section>
+
+  <!-- STEGEN -->
+  <section class="section" style="padding-top:10px">
+    <div class="container narrow">
+      <ol class="kr-steps">
+        <li class="kr-step card reveal">
+          <span class="kr-badge">1</span>
+          <div>
+            <h3>Idé &amp; första kontakt</h3>
+            <p>Du hör av dig via formuläret, mejl eller ett bokat möte. Vi lyssnar in ditt mål och vad materialet ska användas till.</p>
+            <ul class="ticks"><li>Kort avstämning av behov och budget</li><li>Offert och upplägg – oftast inom 24h</li></ul>
+          </div>
+        </li>
+        <li class="kr-step card reveal">
+          <span class="kr-badge">2</span>
+          <div>
+            <h3>Brief &amp; planering</h3>
+            <p>Vi sätter en gemensam brief: syfte, målgrupp, känsla och leverans. Därefter planerar vi tid, plats och praktiska detaljer.</p>
+            <ul class="ticks"><li>Tydlig tidplan och ansvarsfördelning</li><li>Moodboard/referenser vid behov</li></ul>
+          </div>
+        </li>
+        <li class="kr-step card reveal">
+          <span class="kr-badge">3</span>
+          <div>
+            <h3>Produktion (foto &amp; film)</h3>
+            <p>Vi genomför fotograferingen eller inspelningen enligt planen – professionellt, avslappnat och effektivt på plats.</p>
+            <ul class="ticks"><li>Rätt utrustning för uppdraget</li><li>Vi guidar er hela vägen framför kameran</li></ul>
+          </div>
+        </li>
+        <li class="kr-step card reveal">
+          <span class="kr-badge">4</span>
+          <div>
+            <h3>Redigering &amp; efterarbete</h3>
+            <p>Bilder retuscheras och film klipps, färgsätts och ljudmixas. Du får ett första urval att tycka till om.</p>
+            <ul class="ticks"><li>Genomtänkt bild- och färgbehandling</li><li>En revideringsrunda ingår</li></ul>
+          </div>
+        </li>
+        <li class="kr-step card reveal">
+          <span class="kr-badge">5</span>
+          <div>
+            <h3>Leverans</h3>
+            <p>Du får det färdiga materialet i rätt format för dina kanaler – redo att användas direkt.</p>
+            <ul class="ticks"><li>Nedladdningsbara filer i webb- och/eller högupplöst format</li><li>Leverans oftast inom 5–7 arbetsdagar</li></ul>
+          </div>
+        </li>
+        <li class="kr-step card reveal">
+          <span class="kr-badge">6</span>
+          <div>
+            <h3>Uppföljning</h3>
+            <p>Vi stämmer av att du är nöjd och att materialet fyller sitt syfte. Behöver ni mer framåt finns vi kvar som partner.</p>
+            <ul class="ticks"><li>Kort avstämning efter leverans</li><li>Enkelt att beställa mer när behov uppstår</li></ul>
+          </div>
+        </li>
+      </ol>
+
+      <!-- CTA tillbaka in i huvudsajten – integrerat, aldrig en återvändsgränd -->
+      <div class="kr-cta reveal">
+        <h2>Redo att börja er kundresa?</h2>
+        <a href="index.html#kontakt" class="btn btn-accent">Få offert inom 24h <span aria-hidden="true">→</span></a>
+        <a href="index.html#paket" class="btn btn-ghost">Se våra paket</a>
+        <a href="index.html" class="btn btn-ghost">← Till startsidan</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Visorium Studio. Alla rättigheter förbehållna.</span>
+    <span><a href="integritetspolicy.html">Integritetspolicy</a> · <a href="index.html">Startsidan</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent=new Date().getFullYear();
+  // Filmisk scroll-reveal (samma beteende som huvudsidan, fristående)
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+    },{threshold:.12});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>

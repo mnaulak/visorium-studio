@@ -1,0 +1,64 @@
+/* ===================================================================
+   Visorium Studio — experience.css
+   Filmiska scroll-/interaktionslager (endast CSS, ingen JS krävs).
+   Laddas efter styles.css. Allt är progressiv förbättring – om en
+   webbläsare saknar stöd händer inget trasigt, bara mindre effekt.
+   Respekterar prefers-reduced-motion.
+   =================================================================== */
+
+/* ---- 1. Scroll-progressbar högst upp ----
+   Använder CSS scroll-timeline där det finns; annars visas ingen bar. */
+html::before{
+  content:"";position:fixed;top:0;left:0;height:3px;width:100%;z-index:300;
+  transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  box-shadow:0 0 10px rgba(95,224,255,.5);
+}
+@supports (animation-timeline: scroll()){
+  html::before{
+    animation:aura-progress linear;
+    animation-timeline:scroll(root);
+  }
+}
+@keyframes aura-progress{to{transform:scaleX(1)}}
+
+/* ---- 2. Filmisk scroll-reveal med mjuk blur ----
+   Bygger vidare på .reveal (styles.css sätter .in via IntersectionObserver). */
+.reveal{
+  filter:blur(10px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease);
+}
+.reveal.in{filter:blur(0)}
+
+/* ---- 3. Kort: mjuk 3D-lyft + glans-svep vid hover ---- */
+.card{will-change:transform}
+.card{transition:transform .35s var(--ease),border-color .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px) scale(1.012)}
+.card .card-icon{transition:transform .35s var(--ease),box-shadow .3s}
+.card:hover .card-icon{transform:translateY(-2px) scale(1.06);box-shadow:0 0 22px -6px var(--accent-2)}
+
+/* Glans-svep över knappar */
+.btn-accent{position:relative;overflow:hidden}
+.btn-accent::after{
+  content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-18deg);transition:left .6s var(--ease);
+}
+.btn-accent:hover::after{left:130%}
+
+/* ---- 4. Stat-siffror & eyebrow får en subtil glöd (levande UI) ---- */
+.stat-num{text-shadow:0 0 22px rgba(95,224,255,.25)}
+.eyebrow .dot{animation:aura-pulse 2.6s ease-in-out infinite}
+@keyframes aura-pulse{0%,100%{box-shadow:0 0 0 4px var(--accent-soft)}50%{box-shadow:0 0 0 7px rgba(95,224,255,.06)}}
+
+/* ---- 5. Process-steg tonar in i sekvens ---- */
+.steps .step{transition:transform .4s var(--ease),background .3s}
+.steps .step:hover{background:rgba(255,255,255,.05)}
+
+/* ---- 6. Reducerad rörelse: stäng av allt rörligt ---- */
+@media(prefers-reduced-motion:reduce){
+  html::before{display:none}
+  .reveal{filter:none;transition:none}
+  .card,.btn-accent::after,.eyebrow .dot{transition:none;animation:none}
+  .card:hover{transform:none}
+}

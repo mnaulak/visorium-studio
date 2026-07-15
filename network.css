@@ -1,0 +1,25 @@
+/* ===================================================================
+   Visorium Studio — network.css
+   Placerar det levande nod-nätverket i hero-bakgrunden.
+   Canvasen fyller hero-ytan och ligger BAKOM texten (.hero-inner z-index:1),
+   begränsad av .hero{overflow:hidden}. Endast startsidans hero – inget annat.
+   =================================================================== */
+
+.hero-bg .net-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index:0;
+  pointer-events:none;      /* nätverket är dekorativt – aldrig i vägen för klick */
+  opacity:0;
+  transition:opacity 1.1s ease;
+}
+/* JS sätter .is-live när nätverket "vaknat" → mjuk intoning */
+.hero-bg .net-canvas.is-live{opacity:1}
+
+/* Reducerad rörelse: visa en lugn, statisk bild (JS ritar en enda ruta) */
+@media(prefers-reduced-motion:reduce){
+  .hero-bg .net-canvas{transition:none}
+}

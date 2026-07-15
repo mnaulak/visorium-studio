@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Säkerhet: begränsar var resurser får laddas/anslutas. Typsnitt är självhostade (inga anrop till Google
+     innan samtycke); Calendly laddas först vid klick på en boknings-knapp, se script.js -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline' https://assets.calendly.com; script-src 'self' 'unsafe-inline' https://assets.calendly.com; frame-src https://calendly.com https://*.calendly.com; connect-src 'self' https://formspree.io https://formsubmit.co https://calendly.com https://*.calendly.com; form-action 'self'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta name="theme-color" content="#1b2740" />
+<title>Visorium Studio — Foto & filmproduktion för företag och privat | Stockholm & Gävleborg</title>
+<meta name="description" content="Visorium Studio är en modern foto- och filmproduktion i Stockholm & Gävleborg. Växla mellan Företag (content, film, event, reklam) och Privat (porträtt, familj, bröllop) – allt på en sida." />
+<meta property="og:title" content="Visorium Studio — Visuellt berättande för företag och privat" />
+<meta property="og:description" content="Professionellt foto och film. Välj Företag eller Privat – samma sida, ett varumärke." />
+<meta property="og:type" content="website" />
+<link rel="stylesheet" href="fonts.css" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="experience.css?v=3" />
+<link rel="stylesheet" href="aura.css?v=5" />
+<link rel="stylesheet" href="ai-guide.css?v=1" />
+<link rel="stylesheet" href="network.css?v=1" />
+</head>
+<body>
+
+<!-- Tillgänglighet: hoppa direkt till innehållet (syns bara vid tangentbordsfokus) -->
+<a href="#main" class="skip-link">Hoppa till innehåll</a>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a href="#" class="brand" data-nav="top" aria-label="Visorium Studio – till toppen">
+      <svg class="brand-mark" viewBox="0 0 80 64" aria-hidden="true">
+        <polygon points="0,0 34,64 42,48 14,0" fill="var(--accent)"></polygon>
+        <polygon points="80,0 46,64 38,48 66,0" fill="var(--accent)"></polygon>
+      </svg>
+      <span class="brand-word">isorium<span class="brand-sub">STUDIO</span></span>
+    </a>
+
+    <!-- STOR, TYDLIG VÄLJARE: Företag = elektrisk blå, Privat = isblå -->
+    <div class="mode-toggle" role="group" aria-label="Välj Företag eller Privat">
+      <button type="button" data-mode="foretag" class="active" aria-pressed="true">Företag</button>
+      <button type="button" data-mode="privat" aria-pressed="false">Privat</button>
+    </div>
+
+    <nav class="nav" id="nav" aria-label="Huvudmeny">
+      <a href="#" data-nav="tjanster">Tjänster</a>
+      <a href="#" data-nav="portfolio">Portfolio</a>
+      <a href="#" data-nav="paket">Paket</a>
+      <a href="kundresa.html">Kundresa</a>
+      <a href="#" data-nav="faq">FAQ</a>
+      <a href="#" data-nav="kontakt" class="btn btn-accent nav-cta">Kontakta oss</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Öppna meny" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- =================================================================== -->
+<!-- ============================ FÖRETAG (B2B) ========================= -->
+<!-- =================================================================== -->
+<div class="mode-view" data-view="foretag">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" data-section="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow reveal"><span class="dot"></span> Foto &amp; filmproduktion · B2B</p>
+      <h1 class="reveal">Visuellt innehåll som <span class="hl">stärker</span> ert varumärke.</h1>
+      <p class="lead reveal">Visorium Studio är en modern produktionspartner för företag, organisationer och föreningar. Vi producerar professionellt foto och film för kampanjer, kanaler och kommunikation – med en röd tråd från första möte till slutleverans.</p>
+      <div class="hero-actions reveal">
+        <a href="#" data-nav="kontakt" class="btn btn-accent">Få offert inom 24h <span aria-hidden="true">→</span></a>
+        <a href="#" class="btn btn-ghost book-btn" target="_blank" rel="noopener"><svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Boka möte</a>
+        <a href="#" data-nav="tjanster" class="btn btn-ghost">Se våra tjänster</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><span class="stat-num">10+</span><span class="stat-label">års branscherfarenhet</span></div>
+        <div class="stat"><span class="stat-num">B2B</span><span class="stat-label">vår specialitet</span></div>
+        <div class="stat"><span class="stat-num">Baserade</span><span class="stat-label">i Stockholm &amp; Gävleborg</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BAR ===== -->
+  <section class="trust" aria-label="Det vi producerar">
+    <div class="container">
+      <p class="trust-label reveal">Vi producerar foto och film för företag, myndigheter och organisationer i hela landet</p>
+      <div class="trust-logos reveal">
+        <span>EVENT</span><span>FÖRETAGSFILM</span><span>REKLAMFILM</span><span>FÖRETAGSPORTRÄTT</span><span>PRODUKTFOTO</span><span>DRÖNARE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TJÄNSTER ===== -->
+  <section class="section" data-section="tjanster">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Våra tjänster</p>
+        <h2>Innehåll anpassat efter syfte, målgrupp och kanal.</h2>
+        <p class="section-sub">Varje uppdrag planeras utifrån vad materialet ska göra i praktiken – inte standardpaket utan rätt lösning för er.</p>
+      </header>
+
+      <div class="grid grid-3">
+        <article class="card service reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <h3>Filmproduktion</h3>
+          <p>Professionell filmproduktion för verksamheter som behöver tydlig, korrekt och användbar visuell kommunikation – från event till kampanj.</p>
+          <ul class="ticks">
+            <li>Event-highlightvideo &amp; konferensfilm</li>
+            <li>Företags- &amp; presentationsfilm</li>
+            <li>Reklamfilm &amp; kampanjfilm</li>
+            <li>Intervju- &amp; dokumentärfilm</li>
+            <li>Tillval: livestreaming &amp; drönarfilm</li>
+          </ul>
+          <a href="#" data-nav="kontakt" class="card-link">Förfråga om uppdrag <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="card service reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <h3>Fotografering</h3>
+          <p>Foto med tydlig funktion och hög kvalitet – för kommunikation, dokumentation och långsiktig användning, internt och externt.</p>
+          <ul class="ticks">
+            <li>Eventfoto &amp; konferens</li>
+            <li>Verksamhetsbilder i arbetsmiljö</li>
+            <li>Företagsporträtt</li>
+            <li>Press- &amp; kommunikationsbilder</li>
+            <li>Produktfoto</li>
+          </ul>
+          <a href="#" data-nav="kontakt" class="card-link">Förfråga om uppdrag <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="card service reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+          <h3>Foto- &amp; filmpaket</h3>
+          <p>Stillbild och rörligt i samma uppdrag, med gemensam planering – ett enhetligt uttryck över alla kanaler och en effektivare produktion.</p>
+          <ul class="ticks">
+            <li>Foto &amp; film i ett samlat uppdrag</li>
+            <li>En röd tråd över alla plattformar</li>
+            <li>Kostnadseffektivt – mindre ställtid</li>
+            <li>En kontakt genom hela projektet</li>
+          </ul>
+          <a href="#" data-nav="kontakt" class="card-link">Förfråga om uppdrag <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARBETEN / PORTFOLIO =====
+       Riktiga bilder + reklamfilm ligger i mappen bilder/.
+       Lägg till fler genom att kopiera en <figure class="work"> och peka src mot din bild. -->
+  <section class="section" data-section="portfolio">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Utvalda arbeten</p>
+        <h2>Ett urval ur vår portfölj.</h2>
+        <p class="section-sub">Foto och film vi producerat för företag, organisationer och föreningar. Filtrera på typ av uppdrag nedan.</p>
+      </header>
+
+      <div class="port-filters reveal" role="group" aria-label="Filtrera arbeten">
+        <button class="port-filter active" data-filter="alla">Alla</button>
+        <button class="port-filter" data-filter="film">Film</button>
+        <button class="port-filter" data-filter="portratt">Porträtt</button>
+        <button class="port-filter" data-filter="miljo">Miljö &amp; stämning</button>
+      </div>
+
+      <div class="port-grid reveal">
+        <figure class="work" data-cat="film" data-type="film" data-video="bilder/reklamfilm.mp4">
+          <img src="bilder/reklamfilm-poster.jpg" alt="Reklamfilm – stillbild ur produktion" loading="lazy" />
+          <span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <figcaption class="work-cap"><span class="work-tag">Film</span><span class="work-title">Reklamfilm</span><span class="work-sub">Reklamfilm inspelad on location — manus, regi, foto och klippning.</span></figcaption>
+        </figure>
+
+        <figure class="work tall" data-cat="portratt" data-type="foto">
+          <img src="bilder/portratt-skog.jpg" alt="Porträtt i skogsljus" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Porträtt</span><span class="work-title">Porträtt i kvällsljus</span><span class="work-sub">Stämningsfullt porträtt på plats i naturligt ljus.</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-stugor.jpg" alt="Scen vid timrade stugor i skymning" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Scen i skymning</span><span class="work-sub">Stämningsbild vid timrade stugor i kvällsljus.</span></figcaption>
+        </figure>
+
+        <figure class="work tall" data-cat="portratt" data-type="foto">
+          <img src="bilder/portratt-duo.jpg" alt="Dubbelporträtt på plats" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Porträtt</span><span class="work-title">Dubbelporträtt</span><span class="work-sub">Två i bild med konsekvent ljussättning på plats.</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-dragspel.jpg" alt="Detaljer och rekvisita i bild" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Detaljer &amp; rekvisita</span><span class="work-sub">Närvaro och detaljer som bygger berättelsen.</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-dimstig.jpg" alt="Landskap i dimma" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Landskap i dimma</span><span class="work-sub">Stämningsfull naturmiljö i mjukt ljus.</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="portratt" data-type="foto">
+          <img src="bilder/portratt-himmel.jpg" alt="Porträtt mot himlen i motljus" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Porträtt</span><span class="work-title">Porträtt i motljus</span><span class="work-sub">Porträtt mot himlen med dramatiskt ljus.</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-dukat.jpg" alt="Dukat och arrangerat för kameran" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Dukat för kameran</span><span class="work-sub">Arrangerad scen med omsorg om varje detalj.</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-brod.jpg" alt="Hantverk och detaljer i närbild" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Hantverk i närbild</span><span class="work-sub">Närbild på hantverk och stämning i miljön.</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-stig.jpg" alt="Naturmiljö i mjukt ljus" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">På stigen</span><span class="work-sub">Naturmiljö i mjukt kvällsljus.</span></figcaption>
+        </figure>
+      </div>
+
+      <p class="port-note reveal">Vill ni se mer eller referenser från liknande uppdrag? <a href="#" data-nav="kontakt">Hör av er så visar vi gärna.</a></p>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="section section-alt" data-section="process">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Så arbetar vi</p>
+        <h2>Tydlig process. Smidig produktion.</h2>
+        <p class="section-sub">En kontakt genom hela projektet – från första möte till färdig leverans.</p>
+      </header>
+
+      <ol class="steps">
+        <li class="step reveal"><span class="step-num">01</span><h3>Idé &amp; brief</h3><p>Vi går igenom syfte, målgrupp och hur materialet ska användas – grunden för ett tydligt uppdrag.</p></li>
+        <li class="step reveal"><span class="step-num">02</span><h3>Planering</h3><p>Strukturerad planering av innehåll, bildstil, tidplan och praktiska förutsättningar.</p></li>
+        <li class="step reveal"><span class="step-num">03</span><h3>Produktion</h3><p>Professionell foto- och filminspelning med fokus på kvalitet, effektivitet och närvaro.</p></li>
+        <li class="step reveal"><span class="step-num">04</span><h3>Redigering</h3><p>Efterbearbetning med konsekvent bildspråk, tydlig struktur och anpassning per kanal.</p></li>
+        <li class="step reveal"><span class="step-num">05</span><h3>Leverans</h3><p>Leverans enligt deadline i format anpassade för intern och extern kommunikation.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== PAKET ===== -->
+  <section class="section" data-section="paket">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Engångspaket</p>
+        <h2>Tre tydliga paket – välj det som passar er bäst.</h2>
+        <p class="section-sub">Alla paket är engångsuppdrag med fasta leveranstider. Behöver ni något helt eget? Vi bygger gärna en skräddarsydd lösning.</p>
+      </header>
+
+      <div class="grid grid-3 pricing">
+        <article class="card price reveal">
+          <h3>Signature</h3>
+          <p class="price-tagline">Ett komplett startskott</p>
+          <p class="price-amount">från 4 500 kr</p>
+          <p class="price-meta">Engångsuppdrag · leverans inom 5 dagar</p>
+          <ul class="ticks">
+            <li>20 redigerade foton</li>
+            <li>1 kort video (10–20 sek)</li>
+            <li>Fotografering &amp; filmning på plats</li>
+            <li>Anpassat för Instagram &amp; TikTok</li>
+            <li>Kommersiell användningsrätt</li>
+          </ul>
+          <p class="best-for">Bäst för: nya kunder &amp; mindre uppdrag</p>
+          <a href="#" data-nav="kontakt" class="btn btn-outline full">Förfråga offert</a>
+        </article>
+
+        <article class="card price featured reveal">
+          <span class="badge">Mest populär</span>
+          <h3>Essential</h3>
+          <p class="price-tagline">Mer innehåll, mer genomslag</p>
+          <p class="price-amount">från 7 500 kr</p>
+          <p class="price-meta">Engångsuppdrag · leverans inom 4 dagar</p>
+          <ul class="ticks">
+            <li>35 redigerade foton</li>
+            <li>3 videor (10–30 sek)</li>
+            <li>Fotografering &amp; filmning på plats</li>
+            <li>Anpassat för Instagram, TikTok &amp; Facebook</li>
+            <li>Kommersiell användningsrätt</li>
+          </ul>
+          <p class="best-for">Bäst för: kampanjer &amp; säsongsinnehåll</p>
+          <a href="#" data-nav="kontakt" class="btn btn-accent full">Förfråga offert</a>
+        </article>
+
+        <article class="card price reveal">
+          <h3>Prestige</h3>
+          <p class="price-tagline">Fullt produktionspaket</p>
+          <p class="price-amount">från 12 000 kr</p>
+          <p class="price-meta">Engångsuppdrag · leverans inom 3 dagar</p>
+          <ul class="ticks">
+            <li>50+ redigerade foton</li>
+            <li>5 videor inkl. reels &amp; kampanjklipp</li>
+            <li>Fotografering &amp; filmning på plats</li>
+            <li>Alla plattformar – format per kanal</li>
+            <li>Kampanjmaterial</li>
+            <li>Expressprioritering &amp; dedikerad kontakt</li>
+            <li>Kommersiell användningsrätt</li>
+          </ul>
+          <p class="best-for">Bäst för: lansering, event &amp; starka kampanjer</p>
+          <a href="#" data-nav="kontakt" class="btn btn-outline full">Förfråga offert</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" data-section="faq">
+    <div class="container narrow">
+      <header class="section-head center reveal">
+        <p class="eyebrow">Vanliga frågor</p>
+        <h2>Saker vi ofta får frågor om.</h2>
+      </header>
+
+      <div class="faq">
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Vad gör ett produktionsbolag som Visorium Studio?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Vi producerar foto och film åt företag och föreningar – ofta inom B2B. Det inkluderar eventdokumentation, porträtt, företagsbilder för bildbank, företagsfilm, intervjufilm och reklamfilm.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Fotar och filmar ni bara i Stockholm?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Vi är baserade i både Stockholm och Gävleborgs län och producerar endast inom dessa två områden. Vill ni att vi kommer ut till er stad utanför dessa områden går det utmärkt.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Kan ni fota och filma samtidigt?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Ja. Vi hanterar både stillbild och film. Vi kan vara flera fotografer på samma uppdrag, t.ex. event, för att täcka olika ytor parallellt – eller kombinera separat fotograf och filmare för bästa kvalitet.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Hur snabbt får vi en offert?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Skicka in en förfrågan via formuläret så återkommer vi med upplägg, tidsram och offert – oftast inom 24 timmar på vardagar. Är något oklart hör vi av oss för en kort avstämning först.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Hur lång tid tar en produktion?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Mindre uppdrag levereras ofta inom 5–7 arbetsdagar. Större produktioner planeras i god tid och tidplanen sätts gemensamt vid brief. Prioriterad leverans finns vid behov.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Vad kostar det?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Vi anpassar pris efter omfattning, plats och leverans. Skicka in en offertförfrågan så återkommer vi snabbt med ett tydligt förslag – inga standardpaket om de inte passar er.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KONTAKT ===== -->
+  <section class="section section-alt" data-section="kontakt">
+    <div class="container contact-grid">
+      <div class="contact-intro reveal">
+        <p class="eyebrow">Kontakt</p>
+        <h2>Få offert på foto &amp; filmproduktion.</h2>
+        <p>Skicka en förfrågan så återkommer vi med upplägg, tidsram och offert – oftast inom 24 timmar på vardagar. Föredrar du att boka, mejla eller ringa? Det går också utmärkt.</p>
+        <a href="#" class="btn btn-accent book-btn contact-book" target="_blank" rel="noopener"><svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Boka ett möte direkt <span aria-hidden="true">→</span></a>
+        <a class="contact-card" href="mailto:visoriumstudio@gmail.com">
+          <span class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          <span><span class="cc-label">E-post</span><span class="cc-value">visoriumstudio@gmail.com</span></span>
+        </a>
+        <div class="contact-card">
+          <span class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><span class="cc-label">Bas</span><span class="cc-value">Stockholm &amp; Gävleborg · hela Sverige</span></span>
+        </div>
+      </div>
+
+      <form class="quote reveal" novalidate>
+        <div class="quote-progress" aria-hidden="true">
+          <span class="qp-step active" data-step="1">1</span>
+          <span class="qp-line"></span>
+          <span class="qp-step" data-step="2">2</span>
+          <span class="qp-line"></span>
+          <span class="qp-step" data-step="3">3</span>
+        </div>
+
+        <fieldset class="quote-step active" data-step="1">
+          <legend>Vad behöver ni hjälp med?</legend>
+          <p class="quote-help">Välj en eller flera – och ange ungefärlig budget.</p>
+          <div class="chip-grid" role="group" aria-label="Typ av uppdrag">
+            <label class="chip"><input type="checkbox" name="typ" value="Fotoproduktion" /> Fotoproduktion</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Filmproduktion" /> Filmproduktion</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Foto + film i kombination" /> Foto + film i kombination</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Event / konferens" /> Event / konferens</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Företagsfilm / kommunikationsfilm" /> Företagsfilm</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Företagsporträtt" /> Företagsporträtt</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Produktfoto" /> Produktfoto</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Annat" /> Annat</label>
+          </div>
+          <label class="field">
+            <span>Budgetram *</span>
+            <select name="budget">
+              <option value="">Välj budget</option>
+              <option>Under 5 000 kr</option>
+              <option>5 000 – 7 500 kr</option>
+              <option>7 500 – 12 000 kr</option>
+              <option>12 000 – 25 000 kr</option>
+              <option>Osäker / vill ha råd</option>
+            </select>
+          </label>
+          <p class="error" data-error role="alert" aria-live="assertive"></p>
+          <div class="quote-nav">
+            <span></span>
+            <button type="button" class="btn btn-accent" data-next>Nästa <span aria-hidden="true">→</span></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="quote-step" data-step="2">
+          <legend>Berätta lite mer</legend>
+          <label class="field">
+            <span>Beskriv uppdraget</span>
+            <textarea name="beskrivning" rows="4" placeholder="T.ex. event den 14 sep i Stockholm, behöver foton + en kort reel för LinkedIn..."></textarea>
+          </label>
+          <div class="two-col">
+            <label class="field"><span>Önskad tidpunkt</span><input type="date" name="tidpunkt" /></label>
+            <label class="field"><span>Ort / plats</span><input type="text" name="plats" placeholder="Stad" /></label>
+          </div>
+          <div class="quote-nav">
+            <button type="button" class="btn btn-ghost" data-prev><span aria-hidden="true">←</span> Tillbaka</button>
+            <button type="button" class="btn btn-accent" data-next>Nästa <span aria-hidden="true">→</span></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="quote-step" data-step="3">
+          <legend>Era kontaktuppgifter</legend>
+          <div class="two-col">
+            <label class="field"><span>För- och efternamn *</span><input type="text" name="namn" required placeholder="T.ex. Anna Andersson" /></label>
+            <label class="field"><span>Företag</span><input type="text" name="foretag" /></label>
+          </div>
+          <div class="two-col">
+            <label class="field"><span>E-post *</span><input type="email" name="epost" required maxlength="120" /></label>
+            <label class="field"><span>Telefon *</span><input type="tel" name="telefon" maxlength="40" /></label>
+          </div>
+          <!-- Honeypot: dolt för människor, bots fyller i det → vi avbryter tyst -->
+          <div class="hp-field" aria-hidden="true"><label>Lämna tomt<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label></div>
+          <label class="consent"><input type="checkbox" name="samtycke" required /> <span>Jag godkänner att Visorium Studio behandlar mina uppgifter för att besvara förfrågan, enligt <a href="integritetspolicy.html" target="_blank" rel="noopener">integritetspolicyn</a>. *</span></label>
+          <p class="error" data-error role="alert" aria-live="assertive"></p>
+          <div class="quote-nav">
+            <button type="button" class="btn btn-ghost" data-prev><span aria-hidden="true">←</span> Tillbaka</button>
+            <button type="submit" class="btn btn-accent">Skicka förfrågan <span aria-hidden="true">→</span></button>
+          </div>
+        </fieldset>
+
+        <div class="quote-done" data-done hidden>
+          <div class="done-check" aria-hidden="true">✓</div>
+          <h3>Tack! Vi har tagit emot din förfrågan.</h3>
+          <p>Vill du komma igång snabbare? Boka ett kort möte direkt – då slipper du vänta på svar.</p>
+          <a href="#" class="btn btn-accent book-btn" target="_blank" rel="noopener">Boka möte direkt →</a>
+          <p class="quote-help">Ett bekräftelsemejl är på väg till din inkorg – annars hör vi av oss inom 24 timmar. Kolla gärna skräpposten, eller mejla oss på <a href="mailto:visoriumstudio@gmail.com">visoriumstudio@gmail.com</a>.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</div><!-- /Företag -->
+
+<!-- =================================================================== -->
+<!-- ============================ PRIVAT (B2C) ========================= -->
+<!-- =================================================================== -->
+<div class="mode-view" data-view="privat" hidden>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" data-section="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow reveal"><span class="dot"></span> Foto &amp; film · Privat</p>
+      <h1 class="reveal">Ögonblick värda att <span class="hl">minnas</span>.</h1>
+      <p class="lead reveal">Porträtt, familjebilder, gravid &amp; nyfödd, bröllop och event – fotograferat och filmat med känsla, närvaro och hög kvalitet. Du väljer ett tydligt paket, vi tar hand om resten. Enkelt, personligt och avslappnat.</p>
+      <div class="hero-actions reveal">
+        <a href="#" data-nav="kontakt" class="btn btn-accent">Boka fotografering <span aria-hidden="true">→</span></a>
+        <a href="#" class="btn btn-ghost book-btn" target="_blank" rel="noopener"><svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Boka möte</a>
+        <a href="#" data-nav="paket" class="btn btn-ghost">Se paket &amp; priser</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><span class="stat-num">5–7</span><span class="stat-label">dagars leverans av bilderna</span></div>
+        <div class="stat"><span class="stat-num">Fasta</span><span class="stat-label">priser – inga överraskningar</span></div>
+        <div class="stat"><span class="stat-num">Baserade</span><span class="stat-label">i Stockholm &amp; Gävleborg</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STRIP ===== -->
+  <section class="trust" aria-label="Det vi fotograferar">
+    <div class="container">
+      <p class="trust-label reveal">Vi fångar livets viktiga stunder – stora som små</p>
+      <div class="trust-logos reveal">
+        <span>PORTRÄTT</span><span>FAMILJ</span><span>GRAVID&nbsp;&amp;&nbsp;NYFÖDD</span><span>BRÖLLOP</span><span>EVENT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TJÄNSTER ===== -->
+  <section class="section" data-section="tjanster">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Det vi erbjuder</p>
+        <h2>Fotografering för livets fina stunder.</h2>
+        <p class="section-sub">Avslappnat och personligt – oavsett om det är ett porträtt, hela familjen eller den stora dagen. Du behöver inte vara van framför kameran, vi guidar dig hela vägen.</p>
+      </header>
+
+      <div class="grid grid-3">
+        <article class="card service reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <h3>Porträtt &amp; personligt varumärke</h3>
+          <p>Snygga, naturliga porträtt för CV, LinkedIn, sociala medier eller bara för dig själv. Perfekt även för dig som driver eget och vill ha proffsiga bilder.</p>
+          <ul class="ticks">
+            <li>Porträtt på en plats som passar dig</li>
+            <li>Bilder för jobb &amp; sociala medier</li>
+            <li>Avslappnad guidning under hela passet</li>
+          </ul>
+          <a href="#" data-nav="paket" class="card-link">Se priser <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="card service reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Familj, gravid &amp; nyfödd</h3>
+          <p>Varma, äkta bilder på familjen – hemma eller ute i naturen. Vi fångar de små ögonblicken och stämningen, inte bara stela poser.</p>
+          <ul class="ticks">
+            <li>Familje- &amp; barnfotografering</li>
+            <li>Gravidporträtt &amp; nyföddfotografering</li>
+            <li>Hemma hos er eller ute i naturen</li>
+          </ul>
+          <a href="#" data-nav="paket" class="card-link">Se priser <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="card service reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3>Bröllop &amp; event</h3>
+          <p>Er stora dag förtjänar att minnas i bild och film. Vi finns med diskret i bakgrunden och fångar både de stora ögonblicken och de små leendena.</p>
+          <ul class="ticks">
+            <li>Bröllop – halv- eller heldag</li>
+            <li>Dop, kalas, examen &amp; jubileum</li>
+            <li>Foto + kort film till sociala medier</li>
+          </ul>
+          <a href="#" data-nav="paket" class="card-link">Se priser <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERI / PORTFOLIO =====
+       Riktiga bilder + reklamfilm ligger i mappen bilder/. -->
+  <section class="section" data-section="portfolio">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Galleri</p>
+        <h2>Ett urval av våra bilder.</h2>
+        <p class="section-sub">Klicka på en bild för att se den större. Filtrera på typ av fotografering nedan.</p>
+      </header>
+
+      <div class="port-filters reveal" role="group" aria-label="Filtrera bilder">
+        <button class="port-filter active" data-filter="alla">Alla</button>
+        <button class="port-filter" data-filter="film">Film</button>
+        <button class="port-filter" data-filter="portratt">Porträtt</button>
+        <button class="port-filter" data-filter="miljo">Miljö &amp; stämning</button>
+      </div>
+
+      <div class="port-grid reveal">
+        <figure class="work tall" data-cat="portratt" data-type="foto">
+          <img src="bilder/portratt-skog.jpg" alt="Porträtt i skogsljus" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Porträtt</span><span class="work-title">Porträtt i kvällsljus</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="film" data-type="film" data-video="bilder/reklamfilm.mp4">
+          <img src="bilder/reklamfilm-poster.jpg" alt="Reklamfilm – stillbild ur produktion" loading="lazy" />
+          <span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <figcaption class="work-cap"><span class="work-tag">Film</span><span class="work-title">Reklamfilm</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-stugor.jpg" alt="Scen vid timrade stugor i skymning" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Scen i skymning</span></figcaption>
+        </figure>
+
+        <figure class="work tall" data-cat="portratt" data-type="foto">
+          <img src="bilder/portratt-duo.jpg" alt="Dubbelporträtt på plats" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Porträtt</span><span class="work-title">Dubbelporträtt</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-dimstig.jpg" alt="Landskap i dimma" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Landskap i dimma</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-dragspel.jpg" alt="Detaljer och rekvisita i bild" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Detaljer &amp; rekvisita</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="portratt" data-type="foto">
+          <img src="bilder/portratt-himmel.jpg" alt="Porträtt mot himlen i motljus" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Porträtt</span><span class="work-title">Porträtt i motljus</span></figcaption>
+        </figure>
+
+        <figure class="work" data-cat="miljo" data-type="foto">
+          <img src="bilder/miljo-dukat.jpg" alt="Dukat och arrangerat för kameran" loading="lazy" />
+          <figcaption class="work-cap"><span class="work-tag">Miljö</span><span class="work-title">Dukat för kameran</span></figcaption>
+        </figure>
+      </div>
+
+      <p class="port-note reveal">Vill du se fler bilder från en viss typ av fotografering? <a href="#" data-nav="kontakt">Hör av dig så visar vi gärna mer.</a></p>
+    </div>
+  </section>
+
+  <!-- ===== PAKET ===== -->
+  <section class="section section-alt" data-section="paket">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Paket &amp; priser</p>
+        <h2>Tydliga paket med fasta priser.</h2>
+        <p class="section-sub">Inga dolda avgifter – du vet vad det kostar redan från start. Vill du ha något helt eget? Vi sätter gärna ihop ett paket som passar just dig.</p>
+      </header>
+
+      <div class="grid grid-3 pricing">
+        <article class="card price reveal">
+          <h3>Porträtt</h3>
+          <p class="price-tagline">Du, från din bästa sida</p>
+          <p class="price-amount">från 1 500 kr</p>
+          <p class="price-meta">Leverans inom 5–7 dagar</p>
+          <ul class="ticks">
+            <li>Bilder för jobb, CV &amp; sociala medier</li>
+            <li>Personlig guidning under passet</li>
+            <li>Högupplösta bilder för tryck &amp; webb</li>
+          </ul>
+          <p class="best-for">Bäst för: CV, LinkedIn &amp; eget företag</p>
+          <a href="#" data-nav="kontakt" class="btn btn-outline full">Boka porträtt</a>
+        </article>
+
+        <article class="card price featured reveal">
+          <span class="badge">Populärast</span>
+          <h3>Familj &amp; barn</h3>
+          <p class="price-tagline">Hela familjen samlad</p>
+          <p class="price-amount">från 2 500 kr</p>
+          <p class="price-meta">Leverans inom 5–7 dagar</p>
+          <ul class="ticks">
+            <li>Familj, barn, gravid eller nyfödd</li>
+            <li>Avslappnat tempo – bra även med barn</li>
+            <li>Privat onlinegalleri att dela med släkten</li>
+            <li>Högupplösta bilder för tryck &amp; webb</li>
+          </ul>
+          <p class="best-for">Bäst för: familj, gravid &amp; nyfödd</p>
+          <a href="#" data-nav="kontakt" class="btn btn-accent full">Boka familjefoto</a>
+        </article>
+
+        <article class="card price reveal">
+          <h3>Bröllop &amp; event</h3>
+          <p class="price-tagline">Hela dagen, för alltid</p>
+          <p class="price-amount">från 8 000 kr</p>
+          <p class="price-meta">Offert efter önskemål</p>
+          <ul class="ticks">
+            <li>Tillval: kort film till sociala medier</li>
+            <li>Förmöte så vi planerar dagen ihop</li>
+            <li>Privat onlinegalleri att dela</li>
+            <li>Snabb förhandsleverans av smakprov</li>
+          </ul>
+          <p class="best-for">Bäst för: bröllop, dop, kalas &amp; examen</p>
+          <a href="#" data-nav="kontakt" class="btn btn-outline full">Få offert</a>
+        </article>
+      </div>
+
+      <p class="port-note reveal">Vill du lägga till fler bilder, en kort film, fotobok eller expressleverans? <a href="#" data-nav="kontakt">Det fixar vi – fråga oss!</a></p>
+    </div>
+  </section>
+
+  <!-- ===== SÅ GÅR DET TILL ===== -->
+  <section class="section" data-section="process">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Så går det till</p>
+        <h2>Enkelt från bokning till färdiga bilder.</h2>
+        <p class="section-sub">Du ska känna dig trygg och avslappnad – vi tar hand om resten.</p>
+      </header>
+
+      <ol class="steps">
+        <li class="step reveal"><span class="step-num">01</span><h3>Boka tid</h3><p>Välj ett paket och hör av dig. Vi bokar in en tid som passar dig.</p></li>
+        <li class="step reveal"><span class="step-num">02</span><h3>Vi planerar ihop</h3><p>Vi pratar igenom plats, stil och önskemål så att allt känns rätt på dagen.</p></li>
+        <li class="step reveal"><span class="step-num">03</span><h3>Fotografering</h3><p>Avslappnat och lekfullt. Du behöver inte kunna posera – vi guidar dig.</p></li>
+        <li class="step reveal"><span class="step-num">04</span><h3>Färdiga bilder</h3><p>Du får dina handredigerade bilder i ett privat galleri inom några dagar.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" data-section="faq">
+    <div class="container narrow">
+      <header class="section-head center reveal">
+        <p class="eyebrow">Vanliga frågor</p>
+        <h2>Bra att veta inför fotograferingen.</h2>
+      </header>
+
+      <div class="faq">
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Jag är ovan framför kameran – är det lugnt?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Absolut, det är de allra flesta! Du behöver inte kunna posera. Vi håller ett avslappnat tempo, pratar och guidar dig hela vägen så att det känns naturligt och blir snyggt.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Var sker fotograferingen?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Vi kan fota hemma hos dig, ute i naturen eller på en plats som betyder något för dig. Vi väljer det tillsammans när vi planerar inför passet.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Hur många bilder får jag och när?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Antalet beror på paketet (se priserna ovan). Du får dina färdigredigerade, högupplösta bilder i ett privat onlinegalleri – oftast inom 5–7 arbetsdagar. Express finns vid behov.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Kan vi vara flera personer på bilderna?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Ja! Familjepaketet passar både par, hela familjen och barn. Är ni en större grupp eller vill ha extra tid löser vi det – berätta bara hur ni vill ha det.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Var fotar ni?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Vi är baserade i Stockholm och Gävleborg och fotograferar i dessa områden. Hör av dig med din plats så berättar vi vad som fungerar.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">Hur betalar jag och kan jag boka av?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Du betalar enkelt mot faktura. Behöver du boka om en tid går det självklart bra – hör bara av dig i god tid så hittar vi en ny tid som passar.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KONTAKT ===== -->
+  <section class="section section-alt" data-section="kontakt">
+    <div class="container contact-grid">
+      <div class="contact-intro reveal">
+        <p class="eyebrow">Boka tid</p>
+        <h2>Boka din fotografering.</h2>
+        <p>Fyll i formuläret så hör vi av oss snabbt med tider och svar på dina frågor. Vill du hellre boka direkt, mejla eller ringa? Det går också utmärkt.</p>
+        <a href="#" class="btn btn-accent book-btn contact-book" target="_blank" rel="noopener"><svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Boka ett möte direkt <span aria-hidden="true">→</span></a>
+        <a class="contact-card" href="mailto:visoriumstudio@gmail.com">
+          <span class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          <span><span class="cc-label">E-post</span><span class="cc-value">visoriumstudio@gmail.com</span></span>
+        </a>
+        <div class="contact-card">
+          <span class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><span class="cc-label">Plats</span><span class="cc-value">Stockholm &amp; Gävleborg</span></span>
+        </div>
+      </div>
+
+      <form class="quote reveal" novalidate>
+        <div class="quote-progress" aria-hidden="true">
+          <span class="qp-step active" data-step="1">1</span>
+          <span class="qp-line"></span>
+          <span class="qp-step" data-step="2">2</span>
+          <span class="qp-line"></span>
+          <span class="qp-step" data-step="3">3</span>
+        </div>
+
+        <fieldset class="quote-step active" data-step="1">
+          <legend>Vad vill du boka?</legend>
+          <p class="quote-help">Välj en eller flera – och ange ungefärlig budget.</p>
+          <div class="chip-grid" role="group" aria-label="Typ av fotografering">
+            <label class="chip"><input type="checkbox" name="typ" value="Porträtt / personligt varumärke" /> Porträtt</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Familjefotografering" /> Familj &amp; barn</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Gravid / nyfödd" /> Gravid / nyfödd</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Bröllop" /> Bröllop</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Event (dop, kalas, examen)" /> Event</label>
+            <label class="chip"><input type="checkbox" name="typ" value="Annat" /> Annat</label>
+          </div>
+          <label class="field">
+            <span>Budgetram *</span>
+            <select name="budget">
+              <option value="">Välj budget</option>
+              <option>Under 2 000 kr</option>
+              <option>2 000 – 5 000 kr</option>
+              <option>5 000 – 10 000 kr</option>
+              <option>10 000 kr +</option>
+              <option>Osäker / vill ha råd</option>
+            </select>
+          </label>
+          <p class="error" data-error role="alert" aria-live="assertive"></p>
+          <div class="quote-nav">
+            <span></span>
+            <button type="button" class="btn btn-accent" data-next>Nästa <span aria-hidden="true">→</span></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="quote-step" data-step="2">
+          <legend>Berätta lite mer</legend>
+          <label class="field">
+            <span>Beskriv vad du önskar</span>
+            <textarea name="beskrivning" rows="4" placeholder="T.ex. familjefoto utomhus i september, vi är två vuxna och två barn..."></textarea>
+          </label>
+          <div class="two-col">
+            <label class="field"><span>Önskad tidpunkt</span><input type="date" name="tidpunkt" /></label>
+            <label class="field"><span>Ort / plats</span><input type="text" name="plats" placeholder="Stad" /></label>
+          </div>
+          <div class="quote-nav">
+            <button type="button" class="btn btn-ghost" data-prev><span aria-hidden="true">←</span> Tillbaka</button>
+            <button type="button" class="btn btn-accent" data-next>Nästa <span aria-hidden="true">→</span></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="quote-step" data-step="3">
+          <legend>Dina kontaktuppgifter</legend>
+          <!-- Dolt fält så att den delade script.js fungerar (privatkunder anger inget företag) -->
+          <input type="hidden" name="foretag" value="" />
+          <div class="two-col">
+            <label class="field"><span>För- och efternamn *</span><input type="text" name="namn" required placeholder="T.ex. Anna Andersson" /></label>
+            <label class="field"><span>Telefon *</span><input type="tel" name="telefon" /></label>
+          </div>
+          <label class="field"><span>E-post *</span><input type="email" name="epost" required maxlength="120" /></label>
+          <!-- Honeypot: dolt för människor, bots fyller i det → vi avbryter tyst -->
+          <div class="hp-field" aria-hidden="true"><label>Lämna tomt<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label></div>
+          <label class="consent"><input type="checkbox" name="samtycke" required /> <span>Jag godkänner att Visorium Studio behandlar mina uppgifter för att besvara förfrågan, enligt <a href="integritetspolicy.html" target="_blank" rel="noopener">integritetspolicyn</a>. *</span></label>
+          <p class="error" data-error role="alert" aria-live="assertive"></p>
+          <div class="quote-nav">
+            <button type="button" class="btn btn-ghost" data-prev><span aria-hidden="true">←</span> Tillbaka</button>
+            <button type="submit" class="btn btn-accent">Skicka förfrågan <span aria-hidden="true">→</span></button>
+          </div>
+        </fieldset>
+
+        <div class="quote-done" data-done hidden>
+          <div class="done-check" aria-hidden="true">✓</div>
+          <h3>Tack! Vi har tagit emot din förfrågan.</h3>
+          <p>Vill du komma igång snabbare? Boka ett kort möte direkt – då slipper du vänta på svar.</p>
+          <a href="#" class="btn btn-accent book-btn" target="_blank" rel="noopener">Boka möte direkt →</a>
+          <p class="quote-help">Ett bekräftelsemejl är på väg till din inkorg – annars hör vi av oss inom 24 timmar. Kolla gärna skräpposten, eller mejla oss på <a href="mailto:visoriumstudio@gmail.com">visoriumstudio@gmail.com</a>.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</div><!-- /Privat -->
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="brand" data-nav="top">
+        <svg class="brand-mark" viewBox="0 0 80 64" aria-hidden="true">
+          <polygon points="0,0 34,64 42,48 14,0" fill="var(--accent)"></polygon>
+          <polygon points="80,0 46,64 38,48 66,0" fill="var(--accent)"></polygon>
+        </svg>
+        <span class="brand-word">isorium<span class="brand-sub">STUDIO</span></span>
+      </a>
+      <p>Modern foto- och filmproduktion för både företag och privatpersoner. Baserade i Stockholm &amp; Gävleborg.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Företag</h4>
+      <a href="#" data-mode-link="foretag" data-nav="tjanster">Film &amp; foto för B2B</a>
+      <a href="#" data-mode-link="foretag" data-nav="portfolio">Utvalda arbeten</a>
+      <a href="#" data-mode-link="foretag" data-nav="paket">Paket</a>
+      <a href="kundresa.html">Vår kundresa</a>
+      <a href="#" data-mode-link="foretag" data-nav="kontakt">Få offert →</a>
+    </div>
+    <div class="footer-col">
+      <h4>Privat</h4>
+      <a href="#" data-mode-link="privat" data-nav="tjanster">Porträtt, familj &amp; bröllop</a>
+      <a href="#" data-mode-link="privat" data-nav="portfolio">Galleri</a>
+      <a href="#" data-mode-link="privat" data-nav="paket">Paket &amp; priser</a>
+      <a href="#" data-mode-link="privat" data-nav="kontakt">Boka tid →</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a href="mailto:visoriumstudio@gmail.com">visoriumstudio@gmail.com</a>
+      <span>Stockholm &amp; Gävleborg, Sverige</span>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Visorium Studio. Alla rättigheter förbehållna.</span>
+    <span><a href="integritetspolicy.html">Integritetspolicy</a> · <a href="#" data-cookie-settings>Cookie-inställningar</a> · Foto &amp; filmproduktion · Stockholm &amp; Gävleborg</span>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" data-nav="top" aria-label="Till toppen">↑</button>
+
+<!-- ===== Lightbox (delad) ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Bildvisning">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Stäng">&times;</button>
+  <figure class="lightbox-inner">
+    <img id="lightboxImg" src="" alt="" />
+    <video id="lightboxVid" controls playsinline preload="metadata" style="display:none"></video>
+    <figcaption id="lightboxCap"></figcaption>
+  </figure>
+</div>
+
+<!-- ===== AI-guide: guidande paketväljare (företag/privat → kategori → projekt → förslag) ===== -->
+<button class="aig-launch" id="aigLaunch" type="button" aria-haspopup="dialog" aria-controls="aiGuide">
+  <span class="aig-pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M9 17h6"/></svg>
+  <span class="aig-label-long">Hitta rätt paket</span>
+</button>
+
+<div class="aig-modal" id="aiGuide" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="aigTitle">
+  <div class="aig-panel">
+    <button class="aig-close" type="button" aria-label="Stäng">&times;</button>
+    <div class="aig-head">
+      <span class="aig-eyebrow"><span class="dot"></span> Visorium-guiden</span>
+      <h2 id="aigTitle">Låt oss hitta rätt upplägg för dig</h2>
+      <p class="aig-sub">Svara på tre snabba frågor så föreslår vi paketet som passar bäst – helt utan förpliktelser.</p>
+    </div>
+    <div class="aig-progress" aria-hidden="true">
+      <span class="aig-dot active"></span><span class="aig-dot"></span><span class="aig-dot"></span>
+    </div>
+    <div class="aig-body"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="consent.js?v=1"></script>
+<script src="ai-guide.js?v=1"></script>
+<script src="network.js?v=1"></script>
+</body>
+</html>
