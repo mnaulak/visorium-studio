@@ -1,4 +1,7 @@
 .DS_Store
-# Stora videofiler versionshanteras inte (källmaterialet bör redan finnas säkrat separat).
-# Koden, bilderna och konfigurationen nedan är det som faktiskt behöver historik/backup.
-bilder/*.mp4
+# vetnio.mp4 / vetnio-2.mp4 refereras inte någonstans i sajten (oanvända filer) —
+# versionshanteras inte, källmaterialet bör redan finnas säkrat separat.
+# reklamfilm.mp4 ANVÄNDS (portfolio-sektionen) och hanteras istället via Git LFS,
+# se .gitattributes.
+bilder/vetnio.mp4
+bilder/vetnio-2.mp4
