@@ -17,7 +17,7 @@
   transition:opacity 1.1s ease;
 }
 /* JS sätter .is-live när nätverket "vaknat" → mjuk intoning */
-.hero-bg .net-canvas.is-live{opacity:1}
+.hero-bg .net-canvas.is-live{opacity:.45}   /* nedtonad – dekorativ, aldrig dominant */
 
 /* Reducerad rörelse: visa en lugn, statisk bild (JS ritar en enda ruta) */
 @media(prefers-reduced-motion:reduce){

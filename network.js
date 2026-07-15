@@ -31,11 +31,11 @@
   // ---------------------------------------------------------------------------
   function Node(x, y) {
     this.x = x; this.y = y;
-    this.vx = rand(-0.12, 0.12);   // långsam organisk drift
-    this.vy = rand(-0.12, 0.12);
-    this.baseR = rand(1.4, 2.6);
+    this.vx = rand(-0.045, 0.045); // mycket långsam, knappt märkbar drift
+    this.vy = rand(-0.045, 0.045);
+    this.baseR = rand(1.1, 2.0);
     this.phase = rand(0, Math.PI * 2);   // egen puls-fas → nätverket andas asynkront
-    this.pulseSpeed = rand(0.6, 1.4);
+    this.pulseSpeed = rand(0.3, 0.7);
     this.awake = 0;                 // 0 = tyst/isolerad, 1 = fullt levande
     this.wakeTarget = 0;
     this.degree = 0;                // antal grannar just nu (styr ljusstyrka)
@@ -57,7 +57,7 @@
   function Signal(from, to) {
     this.from = from; this.to = to;
     this.p = 0;                     // 0→1 längs länken
-    this.speed = rand(0.4, 0.9);
+    this.speed = rand(0.22, 0.45);
     this.dead = false;
   }
   Signal.prototype.update = function (dt) {
@@ -147,7 +147,7 @@
     // 1) Länkar — nervbanorna
     for (i = 0; i < net.links.length; i++) {
       var l = net.links[i];
-      ctx.strokeStyle = PALETTE.link + (l.s * 0.5).toFixed(3) + ')';
+      ctx.strokeStyle = PALETTE.link + (l.s * 0.22).toFixed(3) + ')';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(l.a.x, l.a.y);
@@ -159,7 +159,7 @@
     for (i = 0; i < net.signals.length; i++) {
       var s = net.signals[i], p = s.pos();
       var fade = Math.sin(s.p * Math.PI);        // tänds och slocknar mjukt
-      ctx.fillStyle = PALETTE.signal + (fade * 0.9).toFixed(3) + ')';
+      ctx.fillStyle = PALETTE.signal + (fade * 0.45).toFixed(3) + ')';
       ctx.beginPath();
       ctx.arc(p.x, p.y, 2.4, 0, Math.PI * 2);
       ctx.fill();
@@ -172,7 +172,7 @@
       var glow = 0.3 + 0.7 * n.pulse + Math.min(0.5, n.degree * 0.08);
       var r = n.baseR * (0.7 + 0.3 * n.pulse) * (0.5 + 0.5 * life);
       var col = (life > 0.5 ? PALETTE.node : PALETTE.nodeQuiet);
-      ctx.fillStyle = col + (Math.min(1, glow) * (0.25 + 0.75 * life)).toFixed(3) + ')';
+      ctx.fillStyle = col + (Math.min(1, glow) * (0.12 + 0.4 * life)).toFixed(3) + ')';
       ctx.beginPath();
       ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
       ctx.fill();
@@ -202,8 +202,8 @@
     var count = Math.round(Math.max(26, Math.min(90, this.w * this.h * density)));
     this.net = new Network({
       linkDist: Math.max(110, Math.min(170, this.w * 0.13)),
-      maxSignals: this.reduced ? 0 : 14,
-      signalRate: 0.06
+      maxSignals: this.reduced ? 0 : 5,
+      signalRate: 0.02
     });
     this.net.populate(count, this.w, this.h);
     this.maxWake = Math.sqrt(this.w * this.w + this.h * this.h);
@@ -237,7 +237,7 @@
     this.last = t;
 
     // Nätverket vaknar: väckningsradien växer utåt tills allt lever
-    if (this.wakeRadius < this.maxWake) this.wakeRadius += dt * 0.25;
+    if (this.wakeRadius < this.maxWake) this.wakeRadius += dt * 0.15;
     this.net.wake(this.wakeRadius);
 
     this.net.update(dt, this.w, this.h, t);
