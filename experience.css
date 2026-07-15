@@ -10,7 +10,7 @@
    Använder CSS scroll-timeline där det finns; annars visas ingen bar. */
 html::before{
   content:"";position:fixed;top:0;left:0;height:3px;width:100%;z-index:300;
-  transform-origin:0 50%;transform:scaleX(0);
+  transform-origin:0 50%;transform:scaleX(var(--scrollp,0)); /* JS-fallback via experience.js */
   background:linear-gradient(90deg,var(--accent),var(--accent-2));
   box-shadow:0 0 10px rgba(95,224,255,.5);
 }
@@ -51,14 +51,45 @@ html::before{
 .eyebrow .dot{animation:aura-pulse 2.6s ease-in-out infinite}
 @keyframes aura-pulse{0%,100%{box-shadow:0 0 0 4px var(--accent-soft)}50%{box-shadow:0 0 0 7px rgba(95,224,255,.06)}}
 
-/* ---- 5. Process-steg tonar in i sekvens ---- */
+/* ---- 5. Process-steg tonar in i sekvens (vänster → höger) ---- */
 .steps .step{transition:transform .4s var(--ease),background .3s}
 .steps .step:hover{background:rgba(255,255,255,.05)}
+.steps .step.reveal:nth-child(1){transition-delay:0ms}
+.steps .step.reveal:nth-child(2){transition-delay:140ms}
+.steps .step.reveal:nth-child(3){transition-delay:280ms}
+.steps .step.reveal:nth-child(4){transition-delay:420ms}
+.steps .step.reveal:nth-child(5){transition-delay:560ms}
 
-/* ---- 6. Reducerad rörelse: stäng av allt rörligt ---- */
+/* ---- 6. 3D-tilt med glans (styrs av experience.js) ----
+   Kortet lutar mot muspekaren; .tilt-glare är ljusglansen som följer den. */
+.card,.work{transform-style:preserve-3d}
+.card .tilt-glare,.work .tilt-glare{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;
+  background:radial-gradient(380px circle at var(--glare-x,50%) var(--glare-y,50%),
+    rgba(255,255,255,.22),transparent 62%);
+  opacity:0;transition:opacity .3s var(--ease);
+}
+.card:hover .tilt-glare,.work:hover .tilt-glare{opacity:1}
+
+/* ---- 7. Magnetiska knappar (styrs av experience.js) ---- */
+.magnetic{translate:var(--mag-x,0) var(--mag-y,0);transition:translate .25s var(--ease)}
+
+/* ---- 8. Aurora-glöd som följer muspekaren (skapas av experience.js) ---- */
+.aura-cursor{
+  position:fixed;top:0;left:0;z-index:1;pointer-events:none;
+  width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(95,224,255,.10) 0%,rgba(45,142,255,.07) 40%,transparent 70%);
+  filter:blur(14px);opacity:0;transition:opacity .6s var(--ease);
+}
+.aura-cursor.is-on{opacity:1}
+
+/* ---- 9. Reducerad rörelse: stäng av allt rörligt ---- */
 @media(prefers-reduced-motion:reduce){
   html::before{display:none}
   .reveal{filter:none;transition:none}
   .card,.btn-accent::after,.eyebrow .dot{transition:none;animation:none}
   .card:hover{transform:none}
+  .tilt-glare,.aura-cursor{display:none}
+  .magnetic{translate:none;transition:none}
 }
