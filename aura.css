@@ -11,7 +11,7 @@
 
 /* ---- 1. Tokens: ljus pärlbas, mörk text, brand-blå accent ---- */
 :root{
-  --bg:#EDEFF2;                 /* pärlvit med svag sval ton */
+  --bg:#F1EEE8;                 /* varm pärlvit */
   --bg-alt:rgba(20,30,45,.035);
   --surface:rgba(255,255,255,.62);
   --surface-2:rgba(255,255,255,.82);
@@ -29,13 +29,13 @@
 }
 
 /* ---- 2. Ljus bakgrund: varm topp (porslin) → sval botten (isglas) ---- */
-html{background:#E4EAF1;overscroll-behavior-y:none} /* ingen vit blixt vid över-scroll */
+html{background:#ECE9E2;overscroll-behavior-y:none} /* ingen vit blixt vid över-scroll */
 body{
   background:
-    radial-gradient(48% 40% at 14% 12%, rgba(255,255,255,.65), transparent 60%),
-    radial-gradient(46% 42% at 88% 16%, rgba(45,142,255,.07), transparent 60%),
-    radial-gradient(60% 50% at 50% 108%, rgba(15,168,201,.05), transparent 60%),
-    linear-gradient(165deg,#F6F5F2 0%,#ECEFF3 48%,#E2E8EF 100%);
+    radial-gradient(48% 40% at 14% 12%, rgba(255,250,240,.7), transparent 60%),
+    radial-gradient(46% 42% at 88% 16%, rgba(45,142,255,.06), transparent 60%),
+    radial-gradient(60% 50% at 50% 108%, rgba(15,168,201,.04), transparent 60%),
+    linear-gradient(165deg,#F8F4EC 0%,#F1EEE7 48%,#E8EAEC 100%);
   background-attachment:fixed;
 }
 body::before{
@@ -176,4 +176,78 @@ body::before{
 @media(prefers-reduced-motion:reduce){
   .hero h1 .hl{animation:none}
   body{background-attachment:scroll}
+}
+
+/* ===================================================================
+   Aura-integrationen: signaturelement fran Aura-landningssidan,
+   anpassade till Visoriums ljusa parlglas-profil.
+   =================================================================== */
+
+/* ---- A1. Liquid-glass-kant (Auras mask-composite-gradient) pa korten ---- */
+.card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;z-index:1;
+  padding:1.4px;
+  background:linear-gradient(180deg,
+    rgba(255,255,255,.9) 0%, rgba(255,255,255,.35) 20%,
+    rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+    rgba(255,255,255,.35) 80%, rgba(255,255,255,.9) 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  pointer-events:none;
+}
+
+/* ---- A2. Vertikala guide-linjer vid innehallets kanter (desktop) ---- */
+@media(min-width:1240px){
+  html::after{content:"";position:fixed;top:0;bottom:0;left:calc(50% - 585px);width:1px;
+    background:rgba(20,30,45,.08);z-index:5;pointer-events:none}
+  body::after{content:"";position:fixed;top:0;bottom:0;right:calc(50% - 585px);width:1px;
+    background:rgba(20,30,45,.08);z-index:5;pointer-events:none}
+}
+
+/* ---- A3. Korn/noise pa shiny-rubriken (Auras c3-noise-filter) ---- */
+.hero h1 .hl{filter:url(#c3-noise)}
+
+/* ---- A4. Hero-bakgrundsvideo (injiceras av experience.js pa desktop) ---- */
+.hero-video{position:absolute;inset:0;z-index:-1;width:100%;height:100%;
+  object-fit:cover;opacity:0;filter:saturate(.85);transition:opacity 1.2s var(--ease)}
+.hero-video.is-on{opacity:.5}
+.hero-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(248,244,236,.78) 0%,rgba(241,238,231,.6) 55%,rgba(241,238,231,.95) 100%)}
+
+/* ---- A5. macOS-fonster runt portfolj/galleri ---- */
+.mac-window{
+  border-radius:18px;overflow:hidden;border:1px solid rgba(20,30,45,.14);
+  background:rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 30px 70px -40px rgba(20,30,45,.45);
+}
+.mac-titlebar{
+  display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;
+  background:linear-gradient(165deg,rgba(56,63,75,.97),rgba(43,49,60,.97));
+  border-bottom:1px solid rgba(255,255,255,.08);position:relative;
+}
+.mac-dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+.mac-title{position:absolute;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,.55);font-size:.78rem;font-family:"Space Grotesk",sans-serif;letter-spacing:.04em}
+.mac-window .port-grid{padding:16px;gap:14px}
+
+/* ---- A6. Watermark bakom paketen (Auras c3-watermark) ---- */
+.section[data-section="paket"]{position:relative;overflow:hidden}
+.section[data-section="paket"] .container{position:relative;z-index:1}
+.paket-watermark{
+  position:absolute;top:14px;left:0;right:0;z-index:0;
+  display:flex;flex-direction:column;align-items:center;
+  pointer-events:none;user-select:none;
+  font-family:"Space Grotesk",sans-serif;font-weight:800;line-height:.92;letter-spacing:-.05em;
+  font-size:clamp(3rem,10vw,8.5rem);
+}
+.paket-watermark .pw-1{color:rgba(20,30,45,.05)}
+.paket-watermark .pw-2{
+  background:linear-gradient(to right,#0B2551 0%,#1B6FE0 25%,#A4D8FD 65%,#00A6C8 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;opacity:.10;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-video{display:none}
 }

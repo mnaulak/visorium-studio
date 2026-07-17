@@ -138,6 +138,35 @@
   })();
 
   /* ----------------------------------------------------------------
+   * 4b. Aura-integration: bakgrundsvideo i hero (endast desktop).
+   *     Hoppar över pekskärm, spardata-läge och reducerad rörelse –
+   *     där behålls den stillsamma gradienten istället.
+   * ---------------------------------------------------------------- */
+  (function heroVideo() {
+    if (reduced) return;
+    if (window.innerWidth < 900) return;
+    var conn = navigator.connection;
+    if (conn && conn.saveData) return;
+    var SRC = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_064122_c4750c0e-7476-4b44-94a2-a85a65c63bf2.mp4';
+    var bgs = document.querySelectorAll('.hero .hero-bg');
+    Array.prototype.forEach.call(bgs, function (bg) {
+      var v = document.createElement('video');
+      v.className = 'hero-video';
+      v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+      v.setAttribute('aria-hidden', 'true');
+      v.src = SRC;
+      var veil = document.createElement('div');
+      veil.className = 'hero-veil';
+      veil.setAttribute('aria-hidden', 'true');
+      bg.insertBefore(veil, bg.firstChild);
+      bg.insertBefore(v, veil);
+      v.addEventListener('canplay', function () { v.classList.add('is-on'); });
+      v.play().catch(function () { /* autoplay-block: gradienten racker */ });
+    });
+  })();
+
+  /* ----------------------------------------------------------------
    * 5. Aurora-glöd som följer muspekaren över hela sidan.
    *    Mjuk lerp så ljuset "flyter" efter istället för att rycka.
    * ---------------------------------------------------------------- */
