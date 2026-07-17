@@ -16,10 +16,10 @@
   'use strict';
 
   var PALETTE = {
-    node:       'rgba(200, 210, 220, ',  // neutral silvergrå
-    nodeQuiet:  'rgba(150, 158, 170, ',  // dämpad ton innan noden vaknat
-    link:       'rgba(175, 184, 196, ',  // länklinjer
-    signal:     'rgba(232, 238, 244, '   // ljust dataflöde
+    node:       'rgba(45, 100, 175, ',   // dämpad brand-blå – syns på ljus bakgrund
+    nodeQuiet:  'rgba(90, 106, 133, ',   // dämpad skiffer innan noden vaknat
+    link:       'rgba(70, 95, 140, ',    // länklinjer
+    signal:     'rgba(27, 111, 224, '    // blått dataflöde
   };
 
   // ---- Liten matematik-hjälp -------------------------------------------------

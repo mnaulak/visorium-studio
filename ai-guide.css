@@ -139,3 +139,28 @@
   .aig-launch,.aig-panel,.aig-step,.aig-result,.aig-bigchoice button,.aig-chip,.aig-btn{animation:none;transition:none}
   .aig-launch .aig-pulse{animation:none}
 }
+
+/* ===================================================================
+   Pärlglas-mixen: modalen behåller mörkt skymningsglas (C) med ljus
+   text – ett medvetet cinematiskt inslag på den ljusa sajten.
+   =================================================================== */
+.aig-panel{
+  background:linear-gradient(165deg,rgba(56,63,75,.97),rgba(43,49,60,.97));
+  border-color:rgba(255,255,255,.18);
+}
+.aig-panel .aig-sub,.aig-panel .aig-reasons li{color:#C3CCD9}
+.aig-panel .aig-bc-sub,.aig-panel .aig-field span,.aig-panel .aig-hint,.aig-panel .aig-restart{color:#96A2B3}
+.aig-panel .aig-bigchoice button,.aig-panel .aig-chip,.aig-panel .aig-btn-ghost{color:#F2F5F9;border-color:rgba(255,255,255,.2)}
+.aig-panel .aig-bigchoice button{background:rgba(255,255,255,.07)}
+.aig-panel .aig-bigchoice button:hover{background:rgba(255,255,255,.12)}
+.aig-panel .aig-chip{background:rgba(255,255,255,.07)}
+.aig-panel .aig-field textarea,.aig-panel .aig-field select{color:#F2F5F9;background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.2)}
+.aig-panel .aig-field select option{color:#1D2736}
+.aig-panel .aig-close{color:#F2F5F9;border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.08)}
+.aig-panel .aig-badge,.aig-panel .aig-price,.aig-panel .aig-reasons li::before,.aig-panel .aig-eyebrow{color:#6FD6EC}
+.aig-panel .aig-eyebrow .dot{background:#6FD6EC}
+.aig-panel .aig-restart:hover{color:#fff}
+.aig-chip.selected{color:#fff}
+.aig-btn-accent{color:#fff}
+.aig-launch{color:#fff}
+.aig-launch .aig-pulse{background:#fff}
