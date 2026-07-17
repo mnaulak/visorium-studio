@@ -12,7 +12,7 @@ html::before{
   content:"";position:fixed;top:0;left:0;height:3px;width:100%;z-index:300;
   transform-origin:0 50%;transform:scaleX(var(--scrollp,0)); /* JS-fallback via experience.js */
   background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  box-shadow:0 0 10px rgba(95,224,255,.5);
+  box-shadow:0 0 10px rgba(255,255,255,.3);
 }
 @supports (animation-timeline: scroll()){
   html::before{
@@ -35,7 +35,7 @@ html::before{
 .card{transition:transform .35s var(--ease),border-color .3s,box-shadow .3s}
 .card:hover{transform:translateY(-6px) scale(1.012)}
 .card .card-icon{transition:transform .35s var(--ease),box-shadow .3s}
-.card:hover .card-icon{transform:translateY(-2px) scale(1.06);box-shadow:0 0 22px -6px var(--accent-2)}
+.card:hover .card-icon{transform:translateY(-2px) scale(1.06);box-shadow:0 0 22px -6px rgba(255,255,255,.4)}
 
 /* Glans-svep över knappar */
 .btn-accent{position:relative;overflow:hidden}
@@ -47,9 +47,9 @@ html::before{
 .btn-accent:hover::after{left:130%}
 
 /* ---- 4. Stat-siffror & eyebrow får en subtil glöd (levande UI) ---- */
-.stat-num{text-shadow:0 0 22px rgba(95,224,255,.25)}
+.stat-num{text-shadow:0 0 22px rgba(255,255,255,.16)}
 .eyebrow .dot{animation:aura-pulse 2.6s ease-in-out infinite}
-@keyframes aura-pulse{0%,100%{box-shadow:0 0 0 4px var(--accent-soft)}50%{box-shadow:0 0 0 7px rgba(95,224,255,.06)}}
+@keyframes aura-pulse{0%,100%{box-shadow:0 0 0 4px var(--accent-soft)}50%{box-shadow:0 0 0 7px rgba(255,255,255,.05)}}
 
 /* ---- 5. Process-steg tonar in i sekvens (vänster → höger) ---- */
 .steps .step{transition:transform .4s var(--ease),background .3s}
@@ -79,7 +79,7 @@ html::before{
   position:fixed;top:0;left:0;z-index:1;pointer-events:none;
   width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;
   background:radial-gradient(circle,
-    rgba(95,224,255,.10) 0%,rgba(45,142,255,.07) 40%,transparent 70%);
+    rgba(255,255,255,.07) 0%,rgba(255,255,255,.04) 40%,transparent 70%);
   filter:blur(14px);opacity:0;transition:opacity .6s var(--ease);
 }
 .aura-cursor.is-on{opacity:1}

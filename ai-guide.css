@@ -78,7 +78,7 @@
   border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--text);
   transition:transform .2s var(--ease),border-color .2s,background .2s;
 }
-.aig-bigchoice button:hover{transform:translateY(-3px);border-color:var(--accent);background:rgba(45,142,255,.10)}
+.aig-bigchoice button:hover{transform:translateY(-3px);border-color:var(--accent);background:rgba(255,255,255,.07)}
 .aig-bigchoice .aig-bc-title{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.1rem}
 .aig-bigchoice .aig-bc-sub{color:var(--muted-2);font-size:.88rem}
 @media(max-width:480px){.aig-bigchoice{grid-template-columns:1fr}}
@@ -121,8 +121,8 @@
 .aig-result{animation:aig-fade .35s var(--ease)}
 .aig-result-card{
   border-radius:18px;padding:22px 22px;margin:4px 0 18px;
-  background:linear-gradient(160deg,rgba(45,142,255,.16),rgba(95,224,255,.06));
-  border:1px solid rgba(95,224,255,.32);
+  background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.26);
 }
 .aig-badge{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--accent-2);margin:0 0 6px}

@@ -103,12 +103,7 @@ img,svg{max-width:100%;display:block}
 
 /* ===== LÄGES-VYER (Företag / Privat på samma sida) ===== */
 .mode-view[hidden]{display:none}
-/* Privatspårets signaturton: isblå/cyan highlight ovanpå den gemensamma mörkblå profilen */
-.mode-view[data-view="privat"] .hero .hl{color:var(--accent-2)}
-.mode-view[data-view="privat"] .eyebrow{color:var(--accent-2)}
-.mode-view[data-view="privat"] .eyebrow .dot{background:var(--accent-2);box-shadow:0 0 0 4px rgba(95,224,255,.15)}
-.mode-view[data-view="privat"] .review .stars{color:var(--accent-2)}
-.mode-view[data-view="privat"] .trust-logos span:hover{color:var(--accent-2)}
+/* Privat och Företag delar samma neutrala uttryck – inga separata signaturtoner */
 
 /* ===== Gaffel-startsida (välj Företag / Privat) ===== */
 .fork{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden}

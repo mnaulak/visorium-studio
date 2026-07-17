@@ -16,10 +16,10 @@
   'use strict';
 
   var PALETTE = {
-    node:       'rgba(95, 224, 255, ',   // ice-blue (--accent-2)
-    nodeQuiet:  'rgba(140, 165, 205, ',  // dämpad ton innan noden vaknat
-    link:       'rgba(120, 175, 255, ',  // länklinjer
-    signal:     'rgba(180, 240, 255, '   // ljust dataflöde
+    node:       'rgba(200, 210, 220, ',  // neutral silvergrå
+    nodeQuiet:  'rgba(150, 158, 170, ',  // dämpad ton innan noden vaknat
+    link:       'rgba(175, 184, 196, ',  // länklinjer
+    signal:     'rgba(232, 238, 244, '   // ljust dataflöde
   };
 
   // ---- Liten matematik-hjälp -------------------------------------------------

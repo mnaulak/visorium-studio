@@ -156,11 +156,11 @@
   .vc-wrap.vc-in .vc-card{transform:translateY(0);opacity:1}\
   .vc-title{font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;font-size:1.05rem;margin:0 0 6px}\
   .vc-text{color:#c4c7cd;margin:0 0 14px}\
-  .vc-text a{color:#5FE0FF;text-decoration:underline}\
+  .vc-text a{color:#A9BDCB;text-decoration:underline}\
   .vc-actions{display:flex;flex-wrap:wrap;gap:8px}\
   .vc-btn{cursor:pointer;border-radius:10px;padding:10px 16px;font-size:14px;font-weight:600;border:1px solid transparent;font-family:inherit}\
-  .vc-accept{background:#2D8EFF;color:#06101f;flex:1 1 auto}\
-  .vc-accept:hover{background:#1B6FE0}\
+  .vc-accept{background:#5F7E9E;color:#06101f;flex:1 1 auto}\
+  .vc-accept:hover{background:#4A6580}\
   .vc-reject{background:transparent;color:#f4f5f7;border-color:rgba(255,255,255,.22)}\
   .vc-reject:hover{border-color:rgba(255,255,255,.45)}\
   .vc-custom{background:transparent;color:#a8acb5;border-color:transparent;text-decoration:underline;padding:10px 8px}\
@@ -175,17 +175,17 @@
   .vc-sw input:disabled{cursor:not-allowed}\
   .vc-track{position:absolute;inset:0;background:#3a3a3a;border-radius:999px;transition:background .2s}\
   .vc-track:before{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s}\
-  .vc-sw input:checked + .vc-track{background:#2D8EFF}\
+  .vc-sw input:checked + .vc-track{background:#5F7E9E}\
   .vc-sw input:checked + .vc-track:before{transform:translateX(18px)}\
-  .vc-sw input:disabled + .vc-track{background:#2D8EFF;opacity:.55}\
+  .vc-sw input:disabled + .vc-track{background:#5F7E9E;opacity:.55}\
   @media(max-width:520px){.vc-accept{flex:1 1 100%}.vc-reject{flex:1 1 100%}}\
   .vc-gate{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;\
     min-height:200px;padding:24px;background:#171717;border:1px dashed rgba(255,255,255,.18);border-radius:14px;\
     color:#c4c7cd;font-family:Inter,-apple-system,system-ui,sans-serif;font-size:14px}\
   .vc-gate strong{color:#f4f5f7;font-family:"Space Grotesk",Inter,sans-serif}\
   .vc-gate button{cursor:pointer;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;\
-    background:#2D8EFF;color:#06101f;font-family:inherit}\
-  .vc-gate button:hover{background:#1B6FE0}';
+    background:#5F7E9E;color:#06101f;font-family:inherit}\
+  .vc-gate button:hover{background:#4A6580}';
 
   var bannerEl = null;
   var showingPrefs = false;

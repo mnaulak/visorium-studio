@@ -12,34 +12,36 @@
       { id: 'event',            label: 'Event / konferens', typ: 'Event / konferens' },
       { id: 'produktfoto',      label: 'Produktfoto',       typ: 'Produktfoto' },
       { id: 'foretagsportratt', label: 'Företagsporträtt',  typ: 'Företagsporträtt' },
-      { id: 'fotofilm',         label: 'Foto + film',       typ: 'Foto + film i kombination' }
+      { id: 'fotofilm',         label: 'Foto + film',       typ: 'Foto + film i kombination' },
+      { id: 'annat',            label: 'Annat',             typ: 'Annat' }
     ],
     privat: [
       { id: 'portratt', label: 'Porträtt',            typ: 'Porträtt / personligt varumärke' },
       { id: 'familj',   label: 'Familj & barn',       typ: 'Familjefotografering' },
       { id: 'gravid',   label: 'Gravid / nyfödd',     typ: 'Gravid / nyfödd' },
       { id: 'brollop',  label: 'Bröllop',             typ: 'Bröllop' },
-      { id: 'kalas',    label: 'Event / kalas',       typ: 'Event (dop, kalas, examen)' }
+      { id: 'kalas',    label: 'Event / kalas',       typ: 'Event (dop, kalas, examen)' },
+      { id: 'annat',    label: 'Annat',               typ: 'Annat' }
     ]
   };
 
   var PKGS = {
     foretag: {
-      signature: { name: 'Signature', price: 'från 4 500 kr' },
-      essential: { name: 'Essential', price: 'från 7 500 kr' },
-      prestige:  { name: 'Prestige',  price: 'från 12 000 kr' }
+      signature: { name: 'Signature', price: 'från 6 000 kr' },
+      essential: { name: 'Essential', price: 'från 9 000 kr' },
+      prestige:  { name: 'Prestige',  price: 'från 13 500 kr' }
     },
     privat: {
-      portratt: { name: 'Porträtt',        price: 'från 1 500 kr' },
-      familj:   { name: 'Familj & barn',   price: 'från 2 500 kr' },
-      brollop:  { name: 'Bröllop & event', price: 'från 8 000 kr' }
+      portratt: { name: 'Porträtt',        price: 'från 2 500 kr' },
+      familj:   { name: 'Familj & barn',   price: 'från 4 000 kr' },
+      brollop:  { name: 'Bröllop & event', price: 'timbaserat · pris per timme' }
     }
   };
 
   // Budgetalternativ per läge (matchar formulärets select-texter så vi kan förifylla).
   var BUDGETS = {
-    foretag: ['Under 5 000 kr', '5 000 – 7 500 kr', '7 500 – 12 000 kr', '12 000 – 25 000 kr', 'Osäker / vill ha råd'],
-    privat:  ['Under 2 000 kr', '2 000 – 5 000 kr', '5 000 – 10 000 kr', '10 000 kr +', 'Osäker / vill ha råd']
+    foretag: ['Under 6 000 kr', '6 000 – 9 000 kr', '9 000 – 13 500 kr', '13 500 – 25 000 kr', 'Osäker / vill ha råd'],
+    privat:  ['Under 2 500 kr', '2 500 – 4 000 kr', '4 000 – 10 000 kr', '10 000 kr + (bröllop & event, timbaserat)', 'Osäker / vill ha råd']
   };
 
   // Nyckelord som pekar mot ett större/mer omfattande paket.
@@ -56,11 +58,11 @@
 
     if (mode === 'foretag') {
       var base = { reklamfilm: 'essential', foretagsfilm: 'essential', event: 'essential',
-        produktfoto: 'signature', foretagsportratt: 'signature', fotofilm: 'essential' };
+        produktfoto: 'signature', foretagsportratt: 'signature', fotofilm: 'essential', annat: 'essential' };
       key = base[cat.id] || 'essential';
 
-      if (budget === 'Under 5 000 kr') key = 'signature';
-      else if (budget === '12 000 – 25 000 kr') key = 'prestige';
+      if (budget === 'Under 6 000 kr') key = 'signature';
+      else if (budget === '13 500 – 25 000 kr') key = 'prestige';
       if (big && key !== 'prestige') key = key === 'signature' ? 'essential' : 'prestige';
       if (small && key === 'essential') key = 'signature';
 
@@ -69,11 +71,11 @@
       else if (key === 'essential') reasons.push('Mest innehåll för pengarna – populärast för kampanjer och löpande behov.');
       else reasons.push('Ett komplett startskott utan att överinvestera – enkelt att skala upp senare.');
     } else {
-      var pbase = { portratt: 'portratt', familj: 'familj', gravid: 'familj', brollop: 'brollop', kalas: 'brollop' };
+      var pbase = { portratt: 'portratt', familj: 'familj', gravid: 'familj', brollop: 'brollop', kalas: 'brollop', annat: 'portratt' };
       key = pbase[cat.id] || 'portratt';
 
       reasons.push(cat.label + ' ingår i vårt ' + PKGS.privat[key].name + '-paket – handredigerade, högupplösta bilder.');
-      if (key === 'brollop') reasons.push('Förmöte så vi planerar dagen ihop, snabb förhandsleverans av smakprov.');
+      if (key === 'brollop') reasons.push('Timbaserat upplägg – ni betalar per timme och vi räknar fram en offert utifrån er dag. Förmöte ingår.');
       else if (key === 'familj') reasons.push('Avslappnat tempo som funkar bra även med barn, privat galleri att dela med släkten.');
       else reasons.push('Personlig guidning under passet – perfekt för CV, LinkedIn och sociala medier.');
     }
