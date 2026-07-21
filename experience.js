@@ -158,6 +158,15 @@
     var v = document.createElement('video');
     v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
     v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    // Dekorativ bakgrund: inga kontroller, ingen Picture-in-Picture, ingen
+    // cast/skip-knapp – de svarta symbolerna ska aldrig dyka upp.
+    v.controls = false;
+    v.disablePictureInPicture = true;
+    v.setAttribute('disablepictureinpicture', '');
+    v.setAttribute('disableremoteplayback', '');
+    v.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback noplaybackrate');
+    v.setAttribute('tabindex', '-1');
+    v.style.pointerEvents = 'none';
     v.src = SRC;
     var veil = document.createElement('div');
     veil.className = 'site-bgfx-veil';
