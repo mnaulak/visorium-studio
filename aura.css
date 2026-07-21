@@ -31,13 +31,10 @@
 /* ---- 2. Ljus bakgrund: EN enhetlig varm nyans hela vägen (topp→botten).
    Detta är även fallback när bakgrundsvideon inte laddas (mobil, spardata,
    reducerad rörelse) – då ser sidan likadant enhetligt ljus ut. ---- */
-html{background:#F3ECDF;overscroll-behavior-y:none} /* ingen vit blixt vid över-scroll */
-body{
-  background:
-    radial-gradient(60% 45% at 50% -5%, rgba(255,248,235,.6), transparent 60%),
-    linear-gradient(180deg,#F5EEE2 0%,#F3ECDF 100%);
-  background-attachment:fixed;
-}
+/* Den varma basen ligger på html. body MÅSTE vara genomskinlig – annars
+   målas body-bakgrunden ovanpå .site-bgfx (z-index:-1) och döljer spiralen. */
+html{background:#F3ECDF;overscroll-behavior-y:none}
+body{background:transparent}
 
 /* ---- 3. Liquid-glass grundklass (delas av flera ytor) ---- */
 .card,.quote,.contact-card,.callout,.client-logos .logo,.steps,.chip,
@@ -201,10 +198,10 @@ body{
 }
 .site-bgfx video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;filter:saturate(.8) brightness(1.02);transition:opacity 1.6s var(--ease);
+  opacity:0;filter:saturate(1) brightness(1.06) contrast(1.03);transition:opacity 1.6s var(--ease);
   pointer-events:none;
 }
-.site-bgfx video.is-on{opacity:.42}
+.site-bgfx video.is-on{opacity:.72}
 /* Dölj alla inbyggda video-kontroller/overlays (PiP-, cast-, spola-knappar) */
 .site-bgfx video::-webkit-media-controls,
 .site-bgfx video::-webkit-media-controls-enclosure,
@@ -218,8 +215,11 @@ body{
 }
 .site-bgfx-veil{
   position:absolute;inset:0;
-  background:radial-gradient(90% 60% at 50% 0%, rgba(255,250,240,.72), transparent 55%),
-    linear-gradient(180deg, rgba(243,236,223,.8) 0%, rgba(243,236,223,.82) 100%);
+  /* Lättare varm slöja: spiralen syns tydligt igenom men sidan förblir ljus
+     och texten läsbar. (Justerbar – höj/sänk dessa alfa-värden för mer/mindre
+     synlig spiral.) */
+  background:radial-gradient(95% 65% at 50% 0%, rgba(255,251,243,.42), transparent 60%),
+    linear-gradient(180deg, rgba(244,238,227,.5) 0%, rgba(244,238,227,.55) 100%);
 }
 
 /* ---- A5. macOS-fonster runt portfolj/galleri ---- */
