@@ -11,7 +11,7 @@
 
 /* ---- 1. Tokens: ljus pärlbas, mörk text, brand-blå accent ---- */
 :root{
-  --bg:#F1EEE8;                 /* varm pärlvit */
+  --bg:#F4EEE3;                 /* varmare pärlvit */
   --bg-alt:rgba(20,30,45,.035);
   --surface:rgba(255,255,255,.62);
   --surface-2:rgba(255,255,255,.82);
@@ -29,13 +29,13 @@
 }
 
 /* ---- 2. Ljus bakgrund: varm topp (porslin) → sval botten (isglas) ---- */
-html{background:#ECE9E2;overscroll-behavior-y:none} /* ingen vit blixt vid över-scroll */
+html{background:#F0E8D8;overscroll-behavior-y:none} /* ingen vit blixt vid över-scroll */
 body{
   background:
-    radial-gradient(48% 40% at 14% 12%, rgba(255,250,240,.7), transparent 60%),
+    radial-gradient(50% 42% at 14% 10%, rgba(255,244,220,.85), transparent 62%),
     radial-gradient(46% 42% at 88% 16%, rgba(45,142,255,.06), transparent 60%),
     radial-gradient(60% 50% at 50% 108%, rgba(15,168,201,.04), transparent 60%),
-    linear-gradient(165deg,#F8F4EC 0%,#F1EEE7 48%,#E8EAEC 100%);
+    linear-gradient(165deg,#FBF3E4 0%,#F5EDDF 48%,#EEE4D2 100%);
   background-attachment:fixed;
 }
 body::before{
@@ -132,7 +132,6 @@ body::before{
 .qp-step{background:rgba(255,255,255,.8);color:var(--muted-2)}
 
 /* ---- 9. Ljus-anpassning av ytor som var hårdkodat mörka/vita ---- */
-.stat-num{color:var(--text)}
 .price-amount{color:var(--text)}
 .review .who strong{color:var(--text)}
 .btn-ghost:hover{color:var(--text)}
@@ -207,12 +206,14 @@ body::before{
 /* ---- A3. Korn/noise pa shiny-rubriken (Auras c3-noise-filter) ---- */
 .hero h1 .hl{filter:url(#c3-noise)}
 
-/* ---- A4. Hero-bakgrundsvideo (injiceras av experience.js pa desktop) ---- */
-.hero-video{position:absolute;inset:0;z-index:-1;width:100%;height:100%;
-  object-fit:cover;opacity:0;filter:saturate(.85);transition:opacity 1.2s var(--ease)}
-.hero-video.is-on{opacity:.5}
-.hero-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(248,244,236,.78) 0%,rgba(241,238,231,.6) 55%,rgba(241,238,231,.95) 100%)}
+/* ---- A4. Hero-bakgrundsvideo (injiceras av experience.js, endast desktop) ----
+   Naturlig DOM-ordning (video -> veil -> canvas -> vignette) avgör lagren,
+   ingen z-index behövs. Mycket låg opacitet: ambient textur under plexuset. */
+.hero-video{position:relative;width:100%;height:100%;
+  object-fit:cover;opacity:0;filter:saturate(.7) brightness(.6);transition:opacity 1.6s var(--ease)}
+.hero-video.is-on{opacity:.16}
+.hero-veil{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,8,20,.55) 0%,rgba(3,8,20,.7) 55%,rgba(3,8,20,.92) 100%)}
 
 /* ---- A5. macOS-fonster runt portfolj/galleri ---- */
 .mac-window{
@@ -250,4 +251,56 @@ body::before{
 
 @media(prefers-reduced-motion:reduce){
   .hero-video{display:none}
+}
+
+/* ===================================================================
+   "Digital plexus": mörk, glödande hero-bakgrund (endast .hero-plexus).
+   Marinblå djup, cyanfärgade/ljusblå glödande noder (network.js/network.css),
+   svävande partiklar med skärpedjup, subtil dynamisk rörelse. Resten av
+   sajten förblir den ljusa Pärlglas-profilen – detta gäller bara hero.
+   =================================================================== */
+
+.hero-plexus .hero-bg{
+  background:
+    radial-gradient(120% 70% at 50% -12%, rgba(30,70,140,.45), transparent 62%),
+    radial-gradient(80% 60% at 8% 105%, rgba(15,120,160,.28), transparent 60%),
+    radial-gradient(70% 55% at 95% 100%, rgba(45,90,190,.22), transparent 60%),
+    linear-gradient(165deg,#050a16 0%,#0a1730 55%,#0d1c3a 100%);
+}
+.hero-plexus .hero-bg::after{display:none} /* dot-grid ersätts av plexus + partiklar */
+
+.hero-plexus h1{color:#F5F9FF}
+.hero-plexus .lead{color:rgba(224,233,247,.78)}
+.hero-plexus .hero-stats{border-top-color:rgba(255,255,255,.14)}
+.hero-plexus .stat-label{color:rgba(200,212,230,.6)}
+.hero-plexus .btn-ghost{color:#fff;border-color:rgba(255,255,255,.32)}
+.hero-plexus .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
+
+/* Shiny-rubriken på mörk botten: nära Auras ursprungliga glöd — mörka toner
+   smälter in i bakgrunden medan cyan/ljusblå blixtrar fram i sekvens. */
+.hero-plexus h1 .hl{
+  background:linear-gradient(100deg,#091020 0%,#0B2551 15%,#7FD8FF 35%,#00D2FF 50%,#7FD8FF 65%,#0B2551 85%,#091020 100%);
+  background-size:220% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* Header helt överst (transparent, ej scrollad) ligger ovanpå plexus-heron
+   på startsidan – ljus text/glas så den syns mot den mörka bakgrunden.
+   Kundresans header är alltid tvingad till .scrolled och påverkas aldrig. */
+.site-header:not(.scrolled) .nav a{color:rgba(255,255,255,.85)}
+.site-header:not(.scrolled) .nav a:hover{color:#fff}
+.site-header:not(.scrolled) .brand-word{color:#fff}
+.site-header:not(.scrolled) .menu-toggle span{background:#fff}
+.site-header:not(.scrolled) .mode-toggle{
+  background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 8px 26px -14px rgba(0,0,0,.6);
+}
+.site-header:not(.scrolled) .mode-toggle a,.site-header:not(.scrolled) .mode-toggle button{color:rgba(255,255,255,.78)}
+.site-header:not(.scrolled) .mode-toggle a:hover,.site-header:not(.scrolled) .mode-toggle button:hover{
+  color:#fff;background:rgba(255,255,255,.1);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-plexus .hero-bg{background:linear-gradient(165deg,#050a16 0%,#0a1730 55%,#0d1c3a 100%)}
 }

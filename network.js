@@ -1,25 +1,28 @@
 /* ===================================================================
    Visorium Studio — network.js
-   "Från tysta, isolerade datakluster till ett levande ekosystem."
+   "Digital plexus": ett glödande, mörkt nätverk i hero-bakgrunden.
 
-   Ett dekorativt nod-nätverk som väcks till liv i hero-bakgrunden.
    Ren, modulär arkitektur:
-     • Node        — en enskild punkt (position, drift, puls, vaknande).
-     • Signal      — ett dataflöde som färdas längs en länk mellan två noder.
-     • Network     — ekosystemet: håller noder, hittar grannar, föder signaler.
-     • Renderer    — ritar allt på <canvas> (ingen DOM-logik blandas in här).
-     • NetworkScene — limmar ihop allt mot en hero + hanterar livscykeln.
+     • Node             — en enskild nätverksnod (position, drift, puls, vaknande).
+     • Signal           — ett dataflöde som färdas längs en länk mellan två noder.
+     • Particle         — svävande, glödande bakgrundspartikel (skärpedjup).
+     • Network          — ekosystemet: håller noder/partiklar, hittar grannar, föder signaler.
+     • Renderer         — ritar allt på <canvas> (ingen DOM-logik blandas in här).
+     • NetworkScene      — limmar ihop allt mot en hero + hanterar livscykeln.
 
    Körs helt i webbläsaren, inga beroenden. Respekterar prefers-reduced-motion.
+   Aktiveras ENDAST för .hero-plexus (startsidans hero) — aldrig kundresan.
    =================================================================== */
 (function () {
   'use strict';
 
   var PALETTE = {
-    node:       'rgba(45, 100, 175, ',   // dämpad brand-blå – syns på ljus bakgrund
-    nodeQuiet:  'rgba(90, 106, 133, ',   // dämpad skiffer innan noden vaknat
-    link:       'rgba(70, 95, 140, ',    // länklinjer
-    signal:     'rgba(27, 111, 224, '    // blått dataflöde
+    node:         'rgba(120, 210, 255, ',  // glödande ljus cyanblå — huvudnoder
+    nodeQuiet:    'rgba(70, 100, 150, ',   // dämpad ton innan noden vaknat
+    link:         'rgba(90, 170, 230, ',   // fina geometriska förbindelselinjer
+    signal:       'rgba(210, 248, 255, ',  // ljusaste dataflödet längs länkarna
+    particleCyan: 'rgba(130, 230, 255, ',  // svävande partiklar, cyan
+    particleBlue: 'rgba(150, 195, 255, ' // svävande partiklar, ljusblå
   };
 
   // ---- Liten matematik-hjälp -------------------------------------------------
@@ -31,9 +34,9 @@
   // ---------------------------------------------------------------------------
   function Node(x, y) {
     this.x = x; this.y = y;
-    this.vx = rand(-0.045, 0.045); // mycket långsam, knappt märkbar drift
-    this.vy = rand(-0.045, 0.045);
-    this.baseR = rand(1.1, 2.0);
+    this.vx = rand(-0.05, 0.05);   // långsam, elegant drift
+    this.vy = rand(-0.05, 0.05);
+    this.baseR = rand(1.3, 2.4);
     this.phase = rand(0, Math.PI * 2);   // egen puls-fas → nätverket andas asynkront
     this.pulseSpeed = rand(0.3, 0.7);
     this.awake = 0;                 // 0 = tyst/isolerad, 1 = fullt levande
@@ -70,6 +73,30 @@
   };
 
   // ---------------------------------------------------------------------------
+  //  Particle — svävande glödande partikel med mjuk skärpedjupeffekt.
+  //  Fristående från nätverksgrafen: ren atmosfär/djup i 3D-känslan.
+  // ---------------------------------------------------------------------------
+  function Particle(w, h) {
+    this.x = rand(0, w); this.y = rand(0, h);
+    this.vx = rand(-0.016, 0.016);
+    this.vy = rand(-0.012, 0.012);
+    this.z = rand(0, 1);                 // djup: 0 = långt bort (suddig), 1 = nära (skarp)
+    this.r = rand(1.1, 2.4) * (0.5 + this.z * 0.9);
+    this.bobAmp = rand(4, 13);
+    this.bobFreq = rand(0.12, 0.3);
+    this.phase = rand(0, Math.PI * 2);
+    this.hue = Math.random() < 0.5 ? 'particleCyan' : 'particleBlue';
+  }
+  Particle.prototype.update = function (dt, w, h, t) {
+    this.x += this.vx * dt; this.y += this.vy * dt;
+    // Sömlös loop: partikeln kliver ut på ena kanten, in på den andra
+    if (this.x < -24) this.x = w + 24; else if (this.x > w + 24) this.x = -24;
+    if (this.y < -24) this.y = h + 24; else if (this.y > h + 24) this.y = -24;
+    // Mjuk svävande bob ovanpå driften – känslan av ett 3D-rum
+    this.drawY = this.y + Math.sin(t * 0.001 * this.bobFreq * Math.PI * 2 + this.phase) * this.bobAmp;
+  };
+
+  // ---------------------------------------------------------------------------
   //  Network — ekosystemet. Vet inget om ritning; bara struktur & liv.
   // ---------------------------------------------------------------------------
   function Network(opts) {
@@ -78,6 +105,7 @@
     this.maxSignals = opts.maxSignals;
     this.signalRate = opts.signalRate;     // sannolikhet/frame att en ny signal föds
     this.nodes = [];
+    this.particles = [];
     this.signals = [];
     this.links = [];                       // återanvänds varje frame (undviker GC-tryck)
   }
@@ -93,6 +121,11 @@
     });
   };
 
+  Network.prototype.populateParticles = function (count, w, h) {
+    this.particles = [];
+    for (var i = 0; i < count; i++) this.particles.push(new Particle(w, h));
+  };
+
   Network.prototype.wake = function (radius) {
     // Kallas löpande: allt inom "radius" (växande) börjar leva
     this.nodes.forEach(function (n) {
@@ -103,6 +136,7 @@
   Network.prototype.update = function (dt, w, h, t) {
     var i, j, a, b;
     for (i = 0; i < this.nodes.length; i++) this.nodes[i].update(dt, w, h, t);
+    for (i = 0; i < this.particles.length; i++) this.particles[i].update(dt, w, h, t);
 
     // Bygg om länklistan + nollställ grannräkning
     this.links.length = 0;
@@ -136,18 +170,35 @@
   };
 
   // ---------------------------------------------------------------------------
-  //  Renderer — översätter nätverkets tillstånd till ljus på canvasen.
+  //  Renderer — översätter nätverkets tillstånd till glödande ljus på canvasen.
   // ---------------------------------------------------------------------------
   function Renderer(ctx) { this.ctx = ctx; }
 
-  Renderer.prototype.draw = function (net, w, h) {
+  Renderer.prototype.draw = function (net, w, h, intro) {
     var ctx = this.ctx, i;
     ctx.clearRect(0, 0, w, h);
 
-    // 1) Länkar — nervbanorna
+    // 0) Svävande partiklar längst bak — mjuk skärpedjupeffekt via radiell
+    //    gradient (billigare än canvas-blur, samma visuella känsla av djup).
+    //    Långt bort (lågt z) = bredare, mjukare glöd. Nära (högt z) = tätare kärna.
+    for (i = 0; i < net.particles.length; i++) {
+      var p = net.particles[i];
+      var soft = 2.2 + (1 - p.z) * 2.6;          // radie på den mjuka glöden
+      var alpha = (0.16 + p.z * 0.5) * intro;
+      var grad = ctx.createRadialGradient(p.x, p.drawY, 0, p.x, p.drawY, p.r * soft);
+      grad.addColorStop(0, PALETTE[p.hue] + alpha.toFixed(3) + ')');
+      grad.addColorStop(0.5, PALETTE[p.hue] + (alpha * 0.35).toFixed(3) + ')');
+      grad.addColorStop(1, PALETTE[p.hue] + '0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(p.x, p.drawY, p.r * soft, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 1) Länkar — fina geometriska förbindelselinjer
     for (i = 0; i < net.links.length; i++) {
       var l = net.links[i];
-      ctx.strokeStyle = PALETTE.link + (l.s * 0.22).toFixed(3) + ')';
+      ctx.strokeStyle = PALETTE.link + (l.s * 0.5).toFixed(3) + ')';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(l.a.x, l.a.y);
@@ -155,25 +206,34 @@
       ctx.stroke();
     }
 
-    // 2) Signaler — dataflöden som pulserar längs banorna
+    // 2) Signaler — dataflöden som glimmar längs banorna
     for (i = 0; i < net.signals.length; i++) {
-      var s = net.signals[i], p = s.pos();
+      var s = net.signals[i], sp = s.pos();
       var fade = Math.sin(s.p * Math.PI);        // tänds och slocknar mjukt
-      ctx.fillStyle = PALETTE.signal + (fade * 0.45).toFixed(3) + ')';
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 2.4, 0, Math.PI * 2);
+      ctx.fillStyle = PALETTE.signal + (fade * 0.22).toFixed(3) + ')';
+      ctx.arc(sp.x, sp.y, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.fillStyle = PALETTE.signal + (fade * 0.9).toFixed(3) + ')';
+      ctx.arc(sp.x, sp.y, 2.6, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // 3) Noder — hjärtslagen. Ljusare ju mer förbundna & vakna de är.
+    // 3) Noder — glödande hjärtslag med mjuk halo + skarp kärna
     for (i = 0; i < net.nodes.length; i++) {
       var n = net.nodes[i];
       var life = n.awake;
-      var glow = 0.3 + 0.7 * n.pulse + Math.min(0.5, n.degree * 0.08);
-      var r = n.baseR * (0.7 + 0.3 * n.pulse) * (0.5 + 0.5 * life);
+      var glow = 0.35 + 0.65 * n.pulse + Math.min(0.5, n.degree * 0.08);
+      var r = n.baseR * (0.75 + 0.25 * n.pulse) * (0.5 + 0.5 * life);
       var col = (life > 0.5 ? PALETTE.node : PALETTE.nodeQuiet);
-      ctx.fillStyle = col + (Math.min(1, glow) * (0.12 + 0.4 * life)).toFixed(3) + ')';
+      var g = Math.min(1, glow);
       ctx.beginPath();
+      ctx.fillStyle = col + (g * (0.06 + 0.18 * life)).toFixed(3) + ')';
+      ctx.arc(n.x, n.y, r * 2.8, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.fillStyle = col + (g * (0.35 + 0.6 * life)).toFixed(3) + ')';
       ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
       ctx.fill();
     }
@@ -188,6 +248,13 @@
     this.canvas.className = 'net-canvas';
     this.canvas.setAttribute('aria-hidden', 'true');
     heroBg.appendChild(this.canvas);
+
+    // Vignette: mjuk mörk kant runt scenen → cinematisk skärpedjup-känsla
+    this.vignette = document.createElement('div');
+    this.vignette.className = 'net-vignette';
+    this.vignette.setAttribute('aria-hidden', 'true');
+    heroBg.appendChild(this.vignette);
+
     this.ctx = this.canvas.getContext('2d');
     this.renderer = new Renderer(this.ctx);
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -195,17 +262,20 @@
     this.raf = null;
     this.last = 0;
     this.wakeRadius = 0;
+    this.introT = 0;
     this.reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var density = 1 / 13000;                    // noder per px² → skalar med hero-yta
+    var density = 1 / 11000;                    // noder per px² → skalar med hero-yta
     this.resize(true);
-    var count = Math.round(Math.max(26, Math.min(90, this.w * this.h * density)));
+    var count = Math.round(Math.max(30, Math.min(110, this.w * this.h * density)));
+    var particleCount = Math.round(Math.max(10, Math.min(26, (this.w * this.h) / 55000)));
     this.net = new Network({
-      linkDist: Math.max(110, Math.min(170, this.w * 0.13)),
-      maxSignals: this.reduced ? 0 : 5,
-      signalRate: 0.02
+      linkDist: Math.max(130, Math.min(190, this.w * 0.15)),
+      maxSignals: this.reduced ? 0 : 7,
+      signalRate: 0.025
     });
     this.net.populate(count, this.w, this.h);
+    this.net.populateParticles(particleCount, this.w, this.h);
     this.maxWake = Math.sqrt(this.w * this.w + this.h * this.h);
   }
 
@@ -219,8 +289,9 @@
     this.maxWake = Math.sqrt(this.w * this.w + this.h * this.h);
     if (!initial && this.net) {
       if (prevW < 2 || prevH < 2) {
-        // Heron var dold vid start (0-yta, t.ex. Privat-vyn) → fördela noderna nu
+        // Heron var dold vid start (0-yta, t.ex. Privat-vyn) → fördela om
         this.net.populate(this.net.nodes.length, this.w, this.h);
+        this.net.populateParticles(this.net.particles.length, this.w, this.h);
       } else {
         // Håll noderna inom nya gränserna
         this.net.nodes.forEach(function (n) {
@@ -235,13 +306,15 @@
     if (!this.last) this.last = t;
     var dt = Math.min(48, t - this.last);        // ms, klampad så flikbyten inte hoppar
     this.last = t;
+    this.introT += dt;
 
     // Nätverket vaknar: väckningsradien växer utåt tills allt lever
     if (this.wakeRadius < this.maxWake) this.wakeRadius += dt * 0.15;
     this.net.wake(this.wakeRadius);
 
     this.net.update(dt, this.w, this.h, t);
-    this.renderer.draw(this.net, this.w, this.h);
+    var intro = Math.min(1, this.introT / 1500);
+    this.renderer.draw(this.net, this.w, this.h, intro);
 
     if (!this.reduced) this.raf = requestAnimationFrame(this.frame.bind(this));
   };
@@ -254,12 +327,12 @@
       this.wakeRadius = this.maxWake;
       this.net.wake(this.maxWake);
       for (var k = 0; k < 40; k++) this.net.update(16, this.w, this.h, k * 16);
-      this.renderer.draw(this.net, this.w, this.h);
+      this.renderer.draw(this.net, this.w, this.h, 1);
       return;
     }
     // Rita en första ruta direkt, starta sedan den löpande loopen
     this.net.update(16, this.w, this.h, 0);
-    this.renderer.draw(this.net, this.w, this.h);
+    this.renderer.draw(this.net, this.w, this.h, 0);
     this.raf = requestAnimationFrame(this.frame.bind(this));
   };
 
@@ -268,11 +341,11 @@
   };
 
   // ---------------------------------------------------------------------------
-  //  Bootstrap — starta en scen per startsidans hero (Företag + Privat).
-  //  Endast .hero (startsidan). Pausar när sidan inte syns → sparar batteri.
+  //  Bootstrap — starta en scen per plexus-hero (Företag + Privat på startsidan).
+  //  Pausar när sidan inte syns → sparar batteri.
   // ---------------------------------------------------------------------------
   function init() {
-    var heroes = document.querySelectorAll('.hero .hero-bg');
+    var heroes = document.querySelectorAll('.hero-plexus .hero-bg');
     if (!heroes.length || !document.createElement('canvas').getContext) return;
 
     var scenes = [];
@@ -299,7 +372,7 @@
           if (r.width > 2 && Math.abs(r.width - s.w) > 1) {
             s.resize(false);
             if (!s.reduced && !s.raf) { s.last = 0; s.raf = requestAnimationFrame(s.frame.bind(s)); }
-            else if (s.reduced) s.renderer.draw(s.net, s.w, s.h);
+            else if (s.reduced) s.renderer.draw(s.net, s.w, s.h, 1);
           }
         });
         ro.observe(s.host);

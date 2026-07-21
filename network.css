@@ -1,8 +1,8 @@
 /* ===================================================================
    Visorium Studio — network.css
-   Placerar det levande nod-nätverket i hero-bakgrunden.
+   Placerar det glödande plexus-nätverket i hero-bakgrunden.
    Canvasen fyller hero-ytan och ligger BAKOM texten (.hero-inner z-index:1),
-   begränsad av .hero{overflow:hidden}. Endast startsidans hero – inget annat.
+   begränsad av .hero{overflow:hidden}. Endast .hero-plexus (startsidans hero).
    =================================================================== */
 
 .hero-bg .net-canvas{
@@ -14,10 +14,17 @@
   z-index:0;
   pointer-events:none;      /* nätverket är dekorativt – aldrig i vägen för klick */
   opacity:0;
-  transition:opacity 1.1s ease;
+  transition:opacity 1.4s ease;
 }
-/* JS sätter .is-live när nätverket "vaknat" → mjuk intoning */
-.hero-bg .net-canvas.is-live{opacity:.45}   /* nedtonad – dekorativ, aldrig dominant */
+/* JS sätter .is-live när nätverket "vaknat" → mjuk intoning. Fullt synlig
+   och glödande mot den mörka plexus-bakgrunden. */
+.hero-bg .net-canvas.is-live{opacity:.92}
+
+/* Mjuk mörk vinjett i kanterna – cinematisk skärpedjup/fokus mot mitten */
+.hero-bg .net-vignette{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 85% at 50% 38%, transparent 42%, rgba(3,8,20,.55) 100%);
+}
 
 /* Reducerad rörelse: visa en lugn, statisk bild (JS ritar en enda ruta) */
 @media(prefers-reduced-motion:reduce){
