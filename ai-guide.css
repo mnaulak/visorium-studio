@@ -5,22 +5,23 @@
    Laddas efter aura.css → glaslooken ärvs via tokens.
    =================================================================== */
 
-/* ---- Flytande launcher (nere till vänster, krockar ej med to-top) ---- */
+/* ---- Flytande launcher (nere till vänster, krockar ej med to-top).
+   Kompakt så den inte täcker text/innehåll när man scrollar, men läsbar. ---- */
 .aig-launch{
-  position:fixed;left:20px;bottom:20px;z-index:250;
-  display:inline-flex;align-items:center;gap:.55em;
-  padding:13px 20px;border:0;border-radius:999px;cursor:pointer;
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.98rem;
+  position:fixed;left:16px;bottom:16px;z-index:250;
+  display:inline-flex;align-items:center;gap:.4em;
+  padding:8px 13px;border:0;border-radius:999px;cursor:pointer;
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.82rem;
   color:#06101f;background:linear-gradient(135deg,var(--accent),var(--accent-2));
-  box-shadow:0 12px 30px -10px var(--accent);
+  box-shadow:0 8px 20px -10px var(--accent);
   transition:transform .25s var(--ease),box-shadow .25s var(--ease);
 }
-.aig-launch:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px var(--accent)}
-.aig-launch svg{width:20px;height:20px}
-.aig-launch .aig-pulse{width:8px;height:8px;border-radius:50%;background:#06101f;
+.aig-launch:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px var(--accent)}
+.aig-launch svg{width:16px;height:16px}
+.aig-launch .aig-pulse{width:6px;height:6px;border-radius:50%;background:#06101f;
   animation:aura-pulse 2.6s ease-in-out infinite}
 @media(max-width:520px){
-  .aig-launch{left:14px;bottom:14px;padding:12px 16px;font-size:.9rem}
+  .aig-launch{left:12px;bottom:12px;padding:8px;font-size:.8rem}
   .aig-launch .aig-label-long{display:none}
 }
 
