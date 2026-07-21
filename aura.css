@@ -18,8 +18,8 @@
   --border:rgba(20,30,45,.12);
   --border-strong:rgba(20,30,45,.22);
   --text:#1D2736;               /* mörk navy-skiffer */
-  --muted:#46536A;
-  --muted-2:#6E7B90;
+  --muted:#3B475C;
+  --muted-2:#586579;
   --accent:#2D8EFF;             /* varumärkets blå – bevarad */
   --accent-deep:#1B6FE0;
   --accent-soft:rgba(45,142,255,.13);
@@ -78,14 +78,16 @@ body{background:transparent}
 .hero-bg{background:transparent}
 .hero-bg::after{display:none}
 
-/* Trust- och alt-sektioner genomskinliga: samma nyans hela vägen,
-   inga tonhopp mellan sektioner (helsides-bakgrunden lyser igenom) */
-.trust{background:transparent;border-color:rgba(20,30,45,.08)}
-.section-alt{background:transparent}
+/* Content-sektioner: lugn, luftig ljus yta (scrollar med) för jämn
+   läsbarhet. Hero lämnas fri så spiralen syns tydligare där (mix:
+   cinematiskt intro i toppen, subtil textur i resten). */
+.section{background:rgba(246,240,231,.58)}
+.section-alt{background:rgba(246,240,231,.58)}
+.trust{background:rgba(246,240,231,.5);border-color:rgba(20,30,45,.08)}
 
 /* ---- 6. Footer: ljust glas i samma nyans som resten (inte mörk längre) ---- */
 .site-footer{
-  background:rgba(255,255,255,.28);
+  background:rgba(246,240,231,.62);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   border-top-color:rgba(20,30,45,.1);
 }
@@ -201,7 +203,7 @@ body{background:transparent}
   opacity:0;filter:saturate(1) brightness(1.06) contrast(1.03);transition:opacity 1.6s var(--ease);
   pointer-events:none;
 }
-.site-bgfx video.is-on{opacity:.72}
+.site-bgfx video.is-on{opacity:.66}
 /* Dölj alla inbyggda video-kontroller/overlays (PiP-, cast-, spola-knappar) */
 .site-bgfx video::-webkit-media-controls,
 .site-bgfx video::-webkit-media-controls-enclosure,
@@ -215,11 +217,11 @@ body{background:transparent}
 }
 .site-bgfx-veil{
   position:absolute;inset:0;
-  /* Lättare varm slöja: spiralen syns tydligt igenom men sidan förblir ljus
-     och texten läsbar. (Justerbar – höj/sänk dessa alfa-värden för mer/mindre
-     synlig spiral.) */
-  background:radial-gradient(95% 65% at 50% 0%, rgba(255,251,243,.42), transparent 60%),
-    linear-gradient(180deg, rgba(244,238,227,.5) 0%, rgba(244,238,227,.55) 100%);
+  /* Global slöja: lätt i toppen (spiralen syns i hero) och något starkare
+     neråt. Textsektionerna har dessutom en egen ljus yta så spiralen blir
+     mycket subtil bakom text. (Justerbara alfa-värden för mer/mindre spiral.) */
+  background:radial-gradient(100% 72% at 50% -10%, rgba(255,252,246,.16), transparent 62%),
+    linear-gradient(180deg, rgba(245,239,230,.34) 0%, rgba(245,239,230,.44) 100%);
 }
 
 /* ---- A5. macOS-fonster runt portfolj/galleri ---- */
