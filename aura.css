@@ -28,19 +28,15 @@
   --shadow:0 24px 60px -30px rgba(20,30,45,.28);
 }
 
-/* ---- 2. Ljus bakgrund: varm topp (porslin) → sval botten (isglas) ---- */
-html{background:#F0E8D8;overscroll-behavior-y:none} /* ingen vit blixt vid över-scroll */
+/* ---- 2. Ljus bakgrund: EN enhetlig varm nyans hela vägen (topp→botten).
+   Detta är även fallback när bakgrundsvideon inte laddas (mobil, spardata,
+   reducerad rörelse) – då ser sidan likadant enhetligt ljus ut. ---- */
+html{background:#F3ECDF;overscroll-behavior-y:none} /* ingen vit blixt vid över-scroll */
 body{
   background:
-    radial-gradient(50% 42% at 14% 10%, rgba(255,244,220,.85), transparent 62%),
-    radial-gradient(46% 42% at 88% 16%, rgba(45,142,255,.06), transparent 60%),
-    radial-gradient(60% 50% at 50% 108%, rgba(15,168,201,.04), transparent 60%),
-    linear-gradient(165deg,#FBF3E4 0%,#F5EDDF 48%,#EEE4D2 100%);
+    radial-gradient(60% 45% at 50% -5%, rgba(255,248,235,.6), transparent 60%),
+    linear-gradient(180deg,#F5EEE2 0%,#F3ECDF 100%);
   background-attachment:fixed;
-}
-body::before{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(120% 120% at 50% 0%,rgba(255,255,255,.35),transparent 55%);
 }
 
 /* ---- 3. Liquid-glass grundklass (delas av flera ytor) ---- */
@@ -80,34 +76,29 @@ body::before{
 }
 .nav a:hover{color:var(--accent-deep)}
 
-/* ---- 5. Hero: ljus och luftig, auroran anas ---- */
-.hero-bg{
-  background:
-    radial-gradient(80% 55% at 50% -8%,rgba(45,142,255,.09),transparent 60%),
-    radial-gradient(60% 50% at 0% 110%,rgba(255,255,255,.5),transparent 60%);
-}
-.hero-bg::after{
-  opacity:.4;
-  background-image:radial-gradient(rgba(20,30,45,.06) 1px,transparent 1px);
-}
+/* ---- 5. Hero: genomskinlig så helsides-bakgrunden (spiralen) syns även
+   här – heron och resten av sidan får en och samma konsekventa nyans ---- */
+.hero-bg{background:transparent}
+.hero-bg::after{display:none}
 
-/* Trust- och alt-sektioner: mycket lätt tonade ytor */
-.trust{background:rgba(20,30,45,.03);border-color:rgba(20,30,45,.1)}
-.section-alt{background:rgba(20,30,45,.03)}
+/* Trust- och alt-sektioner genomskinliga: samma nyans hela vägen,
+   inga tonhopp mellan sektioner (helsides-bakgrunden lyser igenom) */
+.trust{background:transparent;border-color:rgba(20,30,45,.08)}
+.section-alt{background:transparent}
 
-/* ---- 6. Footer: mörkt skymningsglas (C) som cinematiskt avslut ---- */
+/* ---- 6. Footer: ljust glas i samma nyans som resten (inte mörk längre) ---- */
 .site-footer{
-  background:linear-gradient(165deg,rgba(56,63,75,.97),rgba(43,49,60,.97));
+  background:rgba(255,255,255,.28);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-  border-top-color:rgba(255,255,255,.08);
+  border-top-color:rgba(20,30,45,.1);
 }
-.site-footer .brand-word{color:#F5F7FA}
-.footer-brand p,.footer-col a,.footer-col span{color:#AEB9C7}
-.footer-col h4{color:#8B97A7}
-.footer-col a:hover{color:#7FB5FF}
-.footer-bottom{color:#8B97A7;border-top-color:rgba(255,255,255,.1)}
-.footer-bottom a{color:#AEB9C7}
-.footer-bottom a:hover{color:#7FB5FF}
+.site-footer .brand-word{color:var(--text)}
+.footer-brand p,.footer-col a,.footer-col span{color:var(--muted)}
+.footer-col h4{color:var(--muted-2)}
+.footer-col a:hover{color:var(--accent-deep)}
+.footer-bottom{color:var(--muted-2);border-top-color:rgba(20,30,45,.1)}
+.footer-bottom a{color:var(--muted)}
+.footer-bottom a:hover{color:var(--accent-deep)}
 
 /* ---- 7. Shiny gradient-rubrik: navy → brand-blå → cyan (ljus-läsbar) ---- */
 .hero h1 .hl{
@@ -196,23 +187,28 @@ body::before{
   pointer-events:none;
 }
 
-/* ---- A2. Vertikala guide-linjer vid innehallets kanter (desktop) ---- */
-@media(min-width:1240px){
-  html::after{content:"";position:fixed;top:0;bottom:0;left:calc(50% - 585px);width:1px;
-    background:rgba(20,30,45,.08);z-index:5;pointer-events:none}
-  body::after{content:"";position:fixed;top:0;bottom:0;right:calc(50% - 585px);width:1px;
-    background:rgba(20,30,45,.08);z-index:5;pointer-events:none}
-}
-
 /* ---- A3. Korn/noise pa shiny-rubriken (Auras c3-noise-filter) ---- */
 .hero h1 .hl{filter:url(#c3-noise)}
 
-/* ---- A4. Hero-bakgrundsvideo (injiceras av experience.js pa desktop) ---- */
-.hero-video{position:absolute;inset:0;z-index:-1;width:100%;height:100%;
-  object-fit:cover;opacity:0;filter:saturate(.85);transition:opacity 1.2s var(--ease)}
-.hero-video.is-on{opacity:.5}
-.hero-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(248,244,236,.78) 0%,rgba(241,238,231,.6) 55%,rgba(241,238,231,.95) 100%)}
+/* ---- A4. Helsides-bakgrund (spiralen): en fixed video bakom HELA sidan,
+   injiceras av experience.js. Ett varmt ljust lager gör att sajten förblir
+   ljus och att nyansen blir enhetlig topp→botten. Videon skymtar subtilt
+   igenom överallt. En stilla varm bas ligger under så det ser bra ut även
+   om videon inte laddas. ---- */
+.site-bgfx{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  background:linear-gradient(180deg,#F5EEE2 0%,#F3ECDF 100%);
+}
+.site-bgfx video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;filter:saturate(.8) brightness(1.02);transition:opacity 1.6s var(--ease);
+}
+.site-bgfx video.is-on{opacity:.42}
+.site-bgfx-veil{
+  position:absolute;inset:0;
+  background:radial-gradient(90% 60% at 50% 0%, rgba(255,250,240,.72), transparent 55%),
+    linear-gradient(180deg, rgba(243,236,223,.8) 0%, rgba(243,236,223,.82) 100%);
+}
 
 /* ---- A5. macOS-fonster runt portfolj/galleri ---- */
 .mac-window{
@@ -231,23 +227,6 @@ body::before{
   color:rgba(255,255,255,.55);font-size:.78rem;font-family:"Space Grotesk",sans-serif;letter-spacing:.04em}
 .mac-window .port-grid{padding:16px;gap:14px}
 
-/* ---- A6. Watermark bakom paketen (Auras c3-watermark) ---- */
-.section[data-section="paket"]{position:relative;overflow:hidden}
-.section[data-section="paket"] .container{position:relative;z-index:1}
-.paket-watermark{
-  position:absolute;top:14px;left:0;right:0;z-index:0;
-  display:flex;flex-direction:column;align-items:center;
-  pointer-events:none;user-select:none;
-  font-family:"Space Grotesk",sans-serif;font-weight:800;line-height:.92;letter-spacing:-.05em;
-  font-size:clamp(3rem,10vw,8.5rem);
-}
-.paket-watermark .pw-1{color:rgba(20,30,45,.05)}
-.paket-watermark .pw-2{
-  background:linear-gradient(to right,#0B2551 0%,#1B6FE0 25%,#A4D8FD 65%,#00A6C8 100%);
-  -webkit-background-clip:text;background-clip:text;
-  color:transparent;-webkit-text-fill-color:transparent;opacity:.10;
-}
-
 @media(prefers-reduced-motion:reduce){
-  .hero-video{display:none}
+  .site-bgfx video{display:none}
 }
