@@ -244,3 +244,11 @@ body{background:transparent}
 @media(prefers-reduced-motion:reduce){
   .site-bgfx video{display:none}
 }
+
+/* ===================================================================
+   Företag: reklamfilm-showcase – två breda 16:9-rutor (ersätter rutnät)
+   =================================================================== */
+.port-grid.films{grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:18px}
+.port-grid.films .work{aspect-ratio:16/9}
+.port-grid.films .work img{height:100%}
+@media(max-width:720px){.port-grid.films{grid-template-columns:1fr}}
