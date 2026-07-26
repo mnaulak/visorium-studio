@@ -252,3 +252,11 @@ body{background:transparent}
 .port-grid.films .work{aspect-ratio:16/9}
 .port-grid.films .work img{height:100%}
 @media(max-width:720px){.port-grid.films{grid-template-columns:1fr}}
+
+/* ---- Länk till dedikerad reklamfilmssida (fallback för mobil) ---- */
+.port-filmlinks{text-align:center;margin:20px 0 0;color:var(--muted);font-size:.95rem;
+  display:flex;flex-wrap:wrap;gap:10px 14px;justify-content:center;align-items:center}
+.port-filmlinks a{display:inline-flex;align-items:center;gap:.35em;color:var(--accent);font-weight:600;
+  text-decoration:none;border:1px solid var(--border);padding:.5em 1em;border-radius:999px;
+  transition:border-color .2s,background .2s}
+.port-filmlinks a:hover{border-color:var(--accent);background:rgba(45,142,255,.10)}
