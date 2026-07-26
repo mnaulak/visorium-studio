@@ -260,3 +260,6 @@ body{background:transparent}
   text-decoration:none;border:1px solid var(--border);padding:.5em 1em;border-radius:999px;
   transition:border-color .2s,background .2s}
 .port-filmlinks a:hover{border-color:var(--accent);background:rgba(45,142,255,.10)}
+
+/* ---- Privat: processen har 4 steg (inte 5) → 4 kolumner på desktop, ingen tom ruta ---- */
+@media(min-width:981px){.steps-privat{grid-template-columns:repeat(4,1fr)}}
