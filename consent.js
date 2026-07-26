@@ -17,13 +17,16 @@
     fbPixelId: ''    // Facebook/Instagram-pixel, t.ex. '123456789012345' -> kategori: marknadsföring
   };
 
+  // Lagras i sessionStorage => samtyckesrutan visas vid VARJE nytt besök
+  // (nollställs när fliken/webbläsaren stängs). Byt till localStorage om du hellre
+  // vill komma ihåg valet mellan besök.
   var STORAGE_KEY = 'visorium-consent';
   var VERSION = 1; // höj om du ändrar kategorierna -> tvingar omval
 
   // ---- Lagring -------------------------------------------------------
   function readConsent() {
     try {
-      var raw = localStorage.getItem(STORAGE_KEY);
+      var raw = sessionStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       var c = JSON.parse(raw);
       if (!c || c.v !== VERSION) return null;
@@ -32,7 +35,7 @@
   }
   function saveConsent(analytics, marketing) {
     var c = { v: VERSION, analytics: !!analytics, marketing: !!marketing, ts: Date.now() };
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(c)); } catch (e) {}
+    try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(c)); } catch (e) {}
     return c;
   }
 
