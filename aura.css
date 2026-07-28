@@ -263,3 +263,13 @@ body{background:transparent}
 
 /* ---- Privat: processen har 4 steg (inte 5) → 4 kolumner på desktop, ingen tom ruta ---- */
 @media(min-width:981px){.steps-privat{grid-template-columns:repeat(4,1fr)}}
+
+/* ---- Pris inkl. moms (liten text bredvid priset) ---- */
+.price-vat{font-family:Inter,-apple-system,sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--muted);letter-spacing:.02em;white-space:nowrap;margin-left:.45em;vertical-align:middle}
+
+/* ---- "Mest populär"-etiketten: tydligt framför kortet (inte täckt) ---- */
+.pricing{padding-top:18px}
+.price.featured{z-index:2}
+.badge{top:-15px;z-index:5;box-shadow:0 6px 16px -6px rgba(45,142,255,.75)}
+@media(max-width:760px){.pricing .price.featured{margin-top:22px}}
