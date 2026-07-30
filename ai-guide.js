@@ -40,8 +40,8 @@
 
   // Budgetalternativ per läge (matchar formulärets select-texter så vi kan förifylla).
   var BUDGETS = {
-    foretag: ['Under 6 000 kr', '6 000 – 9 000 kr', '9 000 – 13 500 kr', '13 500 – 25 000 kr', 'Osäker / vill ha råd'],
-    privat:  ['Under 2 500 kr', '2 500 – 4 000 kr', '4 000 – 10 000 kr', '10 000 kr + (bröllop & event, timbaserat)', 'Osäker / vill ha råd']
+    foretag: ['6 000 – 9 000 kr', '9 000 – 13 500 kr', '13 500 – 25 000 kr', 'Osäker / vill ha råd'],
+    privat:  ['2 500 – 4 000 kr', '4 000 – 10 000 kr', '10 000 kr + (bröllop & event, timbaserat)', 'Osäker / vill ha råd']
   };
 
   // Nyckelord som pekar mot ett större/mer omfattande paket.
@@ -61,7 +61,7 @@
         produktfoto: 'signature', foretagsportratt: 'signature', fotofilm: 'essential', annat: 'essential' };
       key = base[cat.id] || 'essential';
 
-      if (budget === 'Under 6 000 kr') key = 'signature';
+      if (budget === '6 000 – 9 000 kr') key = 'signature';
       else if (budget === '13 500 – 25 000 kr') key = 'prestige';
       if (big && key !== 'prestige') key = key === 'signature' ? 'essential' : 'prestige';
       if (small && key === 'essential') key = 'signature';
