@@ -273,3 +273,6 @@ body{background:transparent}
 .price.featured{z-index:2}
 .badge{top:-15px;z-index:5;box-shadow:0 6px 16px -6px rgba(45,142,255,.75)}
 @media(max-width:760px){.pricing .price.featured{margin-top:22px}}
+
+/* ---- Honeypot (spam-fälla): helt dold för människor, syns bara för bots ---- */
+.hp-field{position:absolute !important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
