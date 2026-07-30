@@ -7,13 +7,15 @@
 <title>Reklamfilmer — Visorium Studio</title>
 <link rel="stylesheet" href="fonts.css" />
 <style>
+  /* Ljust "Pärlglas"-tema – matchar startsidan (visorium-studio) */
   :root{
-    --bg:#0d1016; --panel:#141922; --text:#f3f6fb; --muted:#aeb8c6;
-    --accent:#2D8EFF; --border:rgba(255,255,255,.12);
+    --bg:#F3ECDF; --bg2:#F6F0E7; --text:#1D2736; --muted:#4A566A;
+    --accent:#2D8EFF; --border:rgba(20,30,45,.12);
   }
   *{box-sizing:border-box}
   body{
-    margin:0; background:var(--bg); color:var(--text);
+    margin:0; background:linear-gradient(180deg,var(--bg2),var(--bg)); color:var(--text);
+    min-height:100vh;
     font-family:"Space Grotesk","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     -webkit-font-smoothing:antialiased;
   }
@@ -21,13 +23,14 @@
     display:flex; align-items:center; justify-content:space-between; gap:16px;
     max-width:1000px; margin:0 auto; padding:20px clamp(16px,4vw,28px);
   }
-  .brand{font-weight:700; letter-spacing:.02em; font-size:1.05rem}
+  .brand{font-weight:700; letter-spacing:.02em; font-size:1.05rem; color:var(--text)}
   .brand span{color:var(--accent)}
   .back{
     color:var(--muted); text-decoration:none; font-size:.92rem;
     border:1px solid var(--border); padding:.5em 1em; border-radius:999px; transition:.2s;
+    background:rgba(255,255,255,.55);
   }
-  .back:hover{color:#fff; border-color:var(--accent)}
+  .back:hover{color:var(--text); border-color:var(--accent); background:rgba(255,255,255,.85)}
   .wrap{max-width:1000px; margin:0 auto; padding:8px clamp(16px,4vw,28px) 64px}
   header.intro{max-width:640px; margin:14px 0 30px}
   .eyebrow{
@@ -42,7 +45,7 @@
   .player{
     position:relative; width:100%; aspect-ratio:16/9; background:#000;
     border-radius:16px; overflow:hidden; border:1px solid var(--border);
-    box-shadow:0 30px 70px -40px rgba(0,0,0,.9);
+    box-shadow:0 24px 60px -30px rgba(20,28,44,.45);
   }
   .player video{width:100%; height:100%; display:block; background:#000}
   .hint{color:var(--muted); font-size:.82rem; margin:10px 2px 0}
