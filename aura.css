@@ -276,3 +276,20 @@ body{background:transparent}
 
 /* ---- Honeypot (spam-fälla): helt dold för människor, syns bara för bots ---- */
 .hp-field{position:absolute !important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
+/* ---- Bekräftelse efter bokat möte (Calendly) ---- */
+.booked-overlay{position:fixed;inset:0;z-index:1200;display:none;place-items:center;padding:24px;
+  background:rgba(12,18,28,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.booked-overlay.open{display:grid;animation:fade .25s var(--ease)}
+.booked-card{position:relative;width:100%;max-width:460px;text-align:center;
+  background:rgba(255,255,255,.96);border:1px solid rgba(20,30,45,.12);border-radius:20px;
+  padding:38px 30px 30px;box-shadow:0 40px 90px -40px rgba(12,20,34,.6)}
+.booked-card h3{font-size:1.45rem;margin:0 0 10px;color:var(--text)}
+.booked-card p{color:var(--muted);margin:0 0 12px;line-height:1.6}
+.booked-card .booked-help{font-size:.9rem;color:var(--muted-2)}
+.booked-card .booked-help a{color:var(--accent);font-weight:600}
+.booked-card .btn{margin-top:8px}
+.booked-close{position:absolute;top:12px;right:14px;width:36px;height:36px;border-radius:10px;
+  border:1px solid rgba(20,30,45,.12);background:rgba(255,255,255,.7);color:var(--text);
+  font-size:1.4rem;line-height:1;cursor:pointer}
+.booked-close:hover{background:#fff;border-color:var(--accent)}
