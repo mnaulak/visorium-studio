@@ -293,3 +293,20 @@ body{background:transparent}
   border:1px solid rgba(20,30,45,.12);background:rgba(255,255,255,.7);color:var(--text);
   font-size:1.4rem;line-height:1;cursor:pointer}
 .booked-close:hover{background:#fff;border-color:var(--accent)}
+
+/* ---- Galleri: packa rutnätet tätt så inga tomma vita luckor uppstår
+   när höga (tall) och låga bilder blandas ---- */
+.port-grid:not(.films){grid-auto-flow:dense}
+
+/* ---- Galleri som masonry: bilderna flyter och fyller alltid ut,
+   så inga tomma vita ytor uppstår oavsett hur många bilder som visas.
+   (Filmrutnätet på företagssidan påverkas inte.) ---- */
+.port-grid:not(.films){display:block;columns:3;column-gap:16px;grid-auto-rows:auto}
+.port-grid:not(.films) .work{
+  break-inside:avoid;-webkit-column-break-inside:avoid;
+  display:block;width:100%;margin:0 0 16px;height:auto;
+}
+.port-grid:not(.films) .work.tall{grid-row:auto}
+.port-grid:not(.films) .work img{height:auto;display:block}
+@media(max-width:980px){.port-grid:not(.films){columns:2}}
+@media(max-width:760px){.port-grid:not(.films){columns:1}}
